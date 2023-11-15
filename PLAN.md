@@ -7,36 +7,38 @@ I aim to have my code finished by the end of January and begin the write up as s
 
 ---
 
-- Week 6th Nov
-  - Finish reading papers about the way the keys are encrypted 
+- ~~Week 6th Nov~~
+  - ~~Research how the keys are encrypted~~
 - Week 13th Nov
+  - Conclude understanding how the keys are encrypted 
+- Week 20th Nov
   - Read statistical tests for encryption including:
     - Frequency Tests
     - Runs Test
     - Chi-Square Test
     - Entropy Measurement
-- Week 20th Nov
-  - Implement statistical tests above
 - Week 27th Nov
-  - Read about distribution analysis
+  - Implement statistical tests above
 - Week 4th Dec
-  - Implement distribution analysis
+  - Read about distribution analysis
 - Week 11th Dec
-  - Read about autocorrelation analysis
+  - Implement distribution analysis
 - Week 18th Dec
-  - Implement autocorrelation analysis
+  - Read about autocorrelation analysis
 - Week 24th Dec
   - Christmas break
 - Week 1st Jan
-  - Read about reproducibility testing
+  - Implement autocorrelation analysis
 - Week 8th Jan
-  - Implement reproducibility testing
+  - Read about reproducibility testing
 - Week 15th Jan
-  - Read about bias testing
+  - Implement reproducibility testing
 - Week 22nd Jan
-  - Implement bias testing 
+  - Read about bias testing
 - Week 29th Jan
-  - Finalise code
+  - Implement bias testing 
 - Week 5th Feb
+  - Finalise code
+- Week 12th Feb
   - Begin write up
 
