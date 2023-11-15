@@ -7,8 +7,8 @@ I aim to have my code finished by the end of January and begin the write up as s
 
 ---
 
-- Week 6th Nov
-  - Research how the keys are encrypted
+- ~~Week 6th Nov~~
+  - ~~Research how the keys are encrypted~~
 - Week 13th Nov
   - Conclude understanding how the keys are encrypted 
 - Week 20th Nov
