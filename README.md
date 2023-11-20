@@ -1,10 +1,15 @@
 # Contents of Repo
 
 - Plan
-- draft of report, including summarys of papers read
+- draft of final report, including summarys of papers read
 - notes
 - code
 - anything else regarding the dissertation
 
-The DissertationPDF folder contains the college template for the report. I have added citations to my bibliography and summarys 
-of the papers I've read in the introduction section in Background. 
+The DraftDissertation folder contains the current draft of my report.
+
+The DissertationPDF folder contains the college template for the report. 
+
+
+
+
