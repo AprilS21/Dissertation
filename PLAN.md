@@ -3,42 +3,21 @@
 Below is the current plan for my dissertation. 
 
 This is still provisional as some areas might require more time than I have allotted. 
-I aim to have my code finished by the end of January and begin the write up as soon as possible.
 
 ---
 
-- ~~Week 6th Nov~~
-  - ~~Research how the keys are encrypted~~
-- Week 13th Nov
-  - Conclude understanding how the keys are encrypted 
-- Week 20th Nov
-  - Read statistical tests for encryption including:
-    - Frequency Tests
-    - Runs Test
-    - Chi-Square Test
-    - Entropy Measurement
-- Week 27th Nov
-  - Implement statistical tests above
-- Week 4th Dec
-  - Read about distribution analysis
-- Week 11th Dec
-  - Implement distribution analysis
-- Week 18th Dec
-  - Read about autocorrelation analysis
-- Week 24th Dec
-  - Christmas break
-- Week 1st Jan
-  - Implement autocorrelation analysis
-- Week 8th Jan
-  - Read about reproducibility testing
-- Week 15th Jan
-  - Implement reproducibility testing
-- Week 22nd Jan
-  - Read about bias testing
-- Week 29th Jan
-  - Implement bias testing 
-- Week 5th Feb
-  - Finalise code
-- Week 12th Feb
-  - Begin write up
+- Background Research (Finish by end of November)
+   - This includes researching the functionality of GAEN Covid tracking apps DONE
+   - How the GAEN keys are generated 
 
+- Research into how to analyse randomness (Begin near end November, finish by end of December)
+   - This includes researching the methods commonly used to test encryption and randomness
+   - Perhaps will speak to a statistician
+   - Also investigate the keys and how to access them
+
+- Write code (January)
+   - I need to write code to carry out the tests from above
+
+ - Write up (February)
+    - finalise work
+    - write my findings in my report
