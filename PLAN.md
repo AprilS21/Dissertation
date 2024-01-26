@@ -18,6 +18,6 @@ This is still provisional as some areas might require more time than I have allo
 - Write code (January)
    - I need to write code to carry out the tests from above
 
- - Write up (February)
+ - Write up (March)
     - finalise work
     - write my findings in my report
