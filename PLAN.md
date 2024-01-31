@@ -21,3 +21,22 @@ This is still provisional as some areas might require more time than I have allo
  - Write up (March)
     - finalise work
     - write my findings in my report
+
+---
+
+### Tests I will carry out
+
+- Dieharder
+   - working provisionally
+- NIST
+   - need to investigate how to run it
+- Boolean functions
+   - paper does not provide the code used, further investigation required
+- Spectral test
+   - working on it, using r
+- other distribution analysis
+   - needs investigation, will probably use r
+- Hardamad transform
+   - needs investigating
+- bias test
+   - if I have time
