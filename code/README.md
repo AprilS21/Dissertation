@@ -21,16 +21,16 @@
     - 1 if you want to extract all the bits between them, or 0 if not
 
 Example usage:
-'''
+```
 bash pipeline.sh "D:\Dissertation\data_dest\uniques\snippetTeks" 1 5 1
-'''
+```
 
 This script passes the parameters to the extractBits.py script. I will expand this script to pass the outputed file to the tests, etc.
 
 - extractBits.py extracts the desired bits from the data. It takes startBit, endBit, runBool and file_path as parameters. The passed file should be in hexadecimal format. It converts each key in the file to binary and extracts the chosen bits. startBit is the first bit you want to extract and endBit is the last. runBool is used to choose whether you want all the bits inbetween startBit and endBit or just those bits themselves. It stores the bits in a temporary  named file. 
 
 For example:
-'''
+```
 key = 100110101
 startBit = 1
 endBit = 5
@@ -41,4 +41,4 @@ startBit = 1
 endBit = 5
 runBool = 0
 extracted_bits = 00
-'''
+```
