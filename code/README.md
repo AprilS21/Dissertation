@@ -9,7 +9,8 @@
 
 ## Tests
 - spectralTest.R is an R script to perform spectral test for randomness, BROKEN, has issues with binary
-- spectralTest.py is a python script to perform spectral test for randomness, works and does chi-squared and autocorrelation tests.
+- spectralTest.py is a python script to perform spectral test for randomness, the method returns a p-value. Prints the number of significant p-values out of all the keys.
+- hilbertCurve.py, python script to plot a hilbert curve of the keys, hexadecimal format.
 
 ---
 

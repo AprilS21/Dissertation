@@ -33,9 +33,11 @@ This is still provisional as some areas might require more time than I have allo
 - Boolean functions
    - paper does not provide the code used, further investigation required
 - Spectral test
-   - working on it, using r
+   - working on it
+- Hilbert Curve
+   - done in python
 - other distribution analysis
-   - needs investigation, will probably use r
+   - needs investigation
 - Hardamad transform
    - needs investigating
 - bias test
