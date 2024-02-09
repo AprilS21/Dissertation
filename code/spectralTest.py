@@ -51,7 +51,7 @@ def main():
                 if(x < 0.05):
                     countSignificant += 1
 
-    print("rejected", countSignificant, " out of ", countKeys)
+    print("rejected", countSignificant, " out of ", countKeys, " result ", countSignificant/countKeys*100, "%")
 
 
 if __name__ == "__main__":
