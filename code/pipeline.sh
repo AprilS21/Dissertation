@@ -20,4 +20,4 @@ echo "temp file is $tmp_file"
 
 #dieharder -a -f "$tmp_file"
 
-python3 spectralTest.py "$tmp_file"
+#python3 spectralTest.py "$tmp_file"

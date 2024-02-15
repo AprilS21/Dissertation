@@ -2,7 +2,28 @@
 import matplotlib.pyplot as plt 
 import numpy as np 
 
-file_path = "//wsl.localhost//Ubuntu//tmp//chosenBitsjmqeohbo.tekBits"
+import numpy as np
+
+def correlation_analysis(keys):
+    """
+    Perform correlation analysis on a set of cryptographic keys.
+
+    Args:
+    keys (list): List of cryptographic keys (e.g., bytes or integers).
+
+    Returns:
+    float: Pearson correlation coefficient between keys.
+    """
+    # Convert keys to numpy array for efficient computation
+    keys_array = np.array(keys)
+
+    # Compute the Pearson correlation coefficient
+    correlation_coefficient = np.corrcoef(keys_array)
+
+    return correlation_coefficient
+
+
+file_path = "//wsl.localhost//Ubuntu//tmp//chosenBitscd6wlfz0.tekBits"
 # Read binary keys from file
 binary_keys = []
 
@@ -27,3 +48,6 @@ print("The Autocorrelation plot for the data is:")
 plt.grid(True)
 
 plt.savefig('autocorrelation.png')
+
+correlation_coefficient = correlation_analysis(binary_keys)
+print("Pearson correlation coefficient between keys:", correlation_coefficient)
