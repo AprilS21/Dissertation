@@ -14,7 +14,8 @@ file_path = sys.argv[1]
 #print(file_path)
 #sys.exit(1)
 
-f = open(file_path + "\export.bin", "rb")
+#f = open(file_path + "\export.bin", "rb")
+f = open("export.bin", "rb")
 g = TemporaryExposureKeyExport_pb2.TemporaryExposureKeyExport()
 header = f.read(16)
 #print("header:"+str(header))
