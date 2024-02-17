@@ -3,6 +3,7 @@ import pandas as pd
 import tempfile
 
 def main(startBit, endBit, runBool, path):
+    number_of_bits = 128
     temp_file = tempfile.NamedTemporaryFile(prefix= "chosenBits", suffix=".tekBits", delete=False)
     tmpf = open(temp_file.name, 'w')
 
@@ -11,6 +12,10 @@ def main(startBit, endBit, runBool, path):
 
     for line in f:
         binary = bin(int(line.strip(), 16))[2:]
+        num_zeros_to_add = number_of_bits - len(binary)
+        # adding leading 0s to keeps keys 128 bits long
+        if num_zeros_to_add > 0:
+            binary = '0' * num_zeros_to_add + binary
         #print(binary)
         if(runBool == 1):
             # extract k  bit sub-string
