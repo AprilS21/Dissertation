@@ -13,21 +13,17 @@ if [ ! -f "$input_file" ]; then
   exit 1
 fi
 
-# Define a temporary directory
 temp_dir=$(mktemp -d)
 
 # Split the large file into smaller chunks
 split -l 100000 "$input_file" "$temp_dir/chunk_"
 
-# Process each chunk to remove duplicates
 for chunk_file in "$temp_dir"/*; do
   sort -u "$chunk_file" >> "$temp_dir/unique_chunks"
 done
 
-# Combine and sort the unique chunks
 sort -u "$temp_dir/unique_chunks" > "$output_file"
 
-# Clean up temporary files and directory
 rm -rf "$temp_dir"
 
 echo "Duplicate rows removed. Unique data saved to '$output_file'."

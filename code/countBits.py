@@ -3,13 +3,23 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def main(path):
+    """
+    Counts frequencies of 1 and 0 in each bit position in set of keys. Plots results.
+
+    Parameters:
+    path to file containing keys, hexadecimal format
+
+    Returns:
+    saves figure as counts1v0.png
+    """
+        
     countZeros = [0]*128
     countOnes = [0]*128
     number_of_bits = 128
     f = open(path, "r")
     for line in f:
         binary = bin(int(line.strip(), 16))[2:]
-        # Ensure that the binary string has the desired number of bits by adding leading zeros if necessary
+        #adds leading 0s to make sure all keys are 128 bits in length
         num_zeros_to_add = number_of_bits - len(binary)
         if num_zeros_to_add > 0:
             binary = '0' * num_zeros_to_add + binary
@@ -36,11 +46,9 @@ def main(path):
         percentageOnesArray[index] = percentageOnes
         print("Bit ", index, " percentage of zeros ", percentageZeros, " and percentage ones ", percentageOnes)
 
-    # Sample data (percentage of ones and zeros for each bit position)
-    # Replace this with your actual data
     bit_positions = np.arange(128)
 
-        # Create stacked bar chart
+    #Plot bar chart
     plt.figure(figsize=(12, 8))
     plt.barh(bit_positions, percentageOnesArray, color='blue', label='Percentage of Ones')
     plt.barh(bit_positions, percentageZerosArray, left=percentageOnesArray, color='red', label='Percentage of Zeros')

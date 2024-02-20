@@ -5,7 +5,7 @@ from scipy.stats import chi2
 import scipy.special as spc
 
 def spectral(bin_data: str):
-    #From: https://gist.github.com/StuartGordonReid/54845bf66de7e195b335#file-spectral-py 
+    #Function from: https://gist.github.com/StuartGordonReid/54845bf66de7e195b335#file-spectral-py 
     """
     Note that this description is taken from the NIST documentation [1]
     [1] http://csrc.nist.gov/publications/nistpubs/800-22-rev1a/SP800-22rev1a.pdf

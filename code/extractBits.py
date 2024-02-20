@@ -3,6 +3,20 @@ import pandas as pd
 import tempfile
 
 def main(startBit, endBit, runBool, path):
+    """
+    Extracts the selected bits from a set of keys and stores them in a temp file
+
+    Parameters:
+    startBit (int): first bit to select
+    endBit (int): end bit to select
+    runBool (int): boolean to choose if you want to extract all the bits between startBit and 
+                    endBit or just startBit and endBit themselves. Value of 1 means you want 
+                    to extract all the bits inbetween.
+    path (str): path to file containing keys, hexadecimal format.
+
+    Returns:
+    Saves chosen bits into temp file
+    """
     number_of_bits = 128
     temp_file = tempfile.NamedTemporaryFile(prefix= "chosenBits", suffix=".tekBits", delete=False)
     tmpf = open(temp_file.name, 'w')

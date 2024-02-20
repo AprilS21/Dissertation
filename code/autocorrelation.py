@@ -6,48 +6,54 @@ import numpy as np
 
 def correlation_analysis(keys):
     """
-    Perform correlation analysis on a set of cryptographic keys.
+    Perform correlation analysis on a set of  keys.
 
-    Args:
-    keys (list): List of cryptographic keys (e.g., bytes or integers).
+    Parameters:
+    keys (list): List of keys, binary format
 
     Returns:
     float: Pearson correlation coefficient between keys.
     """
-    # Convert keys to numpy array for efficient computation
     keys_array = np.array(keys)
-
-    # Compute the Pearson correlation coefficient
+    # get Pearson correlation coefficient
     correlation_coefficient = np.corrcoef(keys_array)
-
     return correlation_coefficient
 
+def main(path):
+    """
+    Plot autocorrelation of a set of keys
 
-file_path = "//wsl.localhost//Ubuntu//tmp//chosenBitscd6wlfz0.tekBits"
-# Read binary keys from file
-binary_keys = []
+    Parameters:
+    path to file containing keys, binary format
 
-with open(file_path, 'r') as file:
-     # file in binary, strings of binary
-    for line in file:
-        line = line.strip()
-        if line:
-            binary_keys.append(int(line))
+    Returns:
+    saves plot as autocorrelation.png
+    prints correlation coefficient
+    """
+    binary_keys = []
 
-# Adding plot title.
-plt.title("Autocorrelation Plot") 
+    with open(path, 'r') as file:
+        # file in binary, strings of binary
+        for line in file:
+            line = line.strip()
+            if line:
+                binary_keys.append(int(line))
 
-# Providing x-axis name.
-plt.xlabel("Lags") 
+    plt.title("Autocorrelation Plot") 
+    plt.xlabel("Lags") 
+    #plot autocorrelation
+    plt.acorr(binary_keys, maxlags = 10) 
+    print("The Autocorrelation plot for the data is:")
+    plt.grid(True)
+    plt.savefig('autocorrelation.png')
 
-# Plotting the Autocorrelation plot.
-plt.acorr(binary_keys, maxlags = 10) 
+    correlation_coefficient = correlation_analysis(binary_keys)
+    print("Pearson correlation coefficient between keys:", correlation_coefficient)
 
-# Displaying the plot.
-print("The Autocorrelation plot for the data is:")
-plt.grid(True)
-
-plt.savefig('autocorrelation.png')
-
-correlation_coefficient = correlation_analysis(binary_keys)
-print("Pearson correlation coefficient between keys:", correlation_coefficient)
+if __name__ == "__main__":
+    #path = str(sys.argv[1])
+    #path = "sampleData/nonRandomLooksRandom"
+    #path = "sampleData/nonRandom"
+    #path = "sampleData/snippetTeks"
+    path = "//wsl.localhost//Ubuntu//tmp//chosenBitscd6wlfz0.tekBits"
+    main(path)
