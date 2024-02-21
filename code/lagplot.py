@@ -31,7 +31,7 @@ def main(path):
     fig, ax = plt.subplots(1, 2, figsize=(12, 7)) 
     ax[0].plot(data['index'],data[0])
     pd.plotting.lag_plot(data,lag=1,ax =ax[1]) 
-    plt.savefig('lagplot.png') 
+    plt.savefig('./lagplot.png') 
 
 if __name__ == "__main__":
     #path = "//wsl.localhost//Ubuntu//tmp//chosenBitsjmqeohbo.tekBits"

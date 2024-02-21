@@ -30,7 +30,7 @@ def plot_hilbert_curve(hex_keys):
     plt.title("Hilbert Curve")
     plt.plot(*zip(*coordinates), color='blue', marker='o')
     plt.gca().invert_yaxis()  # Invert y-axis
-    plt.savefig('hilbertCurve.png')
+    plt.savefig('./hilbertCurve.png')
 
 def main(path):
     with open(path, 'r') as file:

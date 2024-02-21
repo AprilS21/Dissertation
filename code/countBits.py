@@ -60,7 +60,7 @@ def main(path):
     plt.legend(loc='upper right')
     plt.grid(True, axis='x', linestyle='--', alpha=0.7)
 
-    plt.savefig('counts1v0.png')
+    plt.savefig('./counts1v0.png')
 
 
 
