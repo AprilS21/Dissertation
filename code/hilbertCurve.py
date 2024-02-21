@@ -1,3 +1,4 @@
+import sys
 import matplotlib.pyplot as plt
 from hilbertcurve.hilbertcurve import HilbertCurve
 import numpy as np
@@ -31,9 +32,12 @@ def plot_hilbert_curve(hex_keys):
     plt.gca().invert_yaxis()  # Invert y-axis
     plt.savefig('hilbertCurve.png')
 
+def main(path):
+    with open(path, 'r') as file:
+            hex_keys = file.readlines()
 
-file_name = "sampleData/snippetTeks"
-with open(file_name, 'r') as file:
-        hex_keys = file.readlines()
+    plot_hilbert_curve(hex_keys)
 
-plot_hilbert_curve(hex_keys)
+if __name__ == "__main__":
+    path = str(sys.argv[1])
+    main(path)

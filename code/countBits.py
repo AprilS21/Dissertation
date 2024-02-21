@@ -65,7 +65,7 @@ def main(path):
 
 
 if __name__ == "__main__":
-    #path = str(sys.argv[1])
-    path = "sampleData/snippetTeks"
+    path = str(sys.argv[1])
+    #path = "sampleData/snippetTeks"
     #path = "sampleData/nonRandomLooksRandom"
     main(path)

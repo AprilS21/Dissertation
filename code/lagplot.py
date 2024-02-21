@@ -1,4 +1,4 @@
-# Import Libraries 
+import sys
 import pandas as pd 
 import numpy as np 
 import matplotlib.pyplot as plt 
@@ -34,5 +34,6 @@ def main(path):
     plt.savefig('lagplot.png') 
 
 if __name__ == "__main__":
-    path = "//wsl.localhost//Ubuntu//tmp//chosenBitsjmqeohbo.tekBits"
+    #path = "//wsl.localhost//Ubuntu//tmp//chosenBitsjmqeohbo.tekBits"
+    path = str(sys.argv[1])
     main(path)

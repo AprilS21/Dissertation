@@ -1,4 +1,5 @@
 # Importing the libraries.
+import sys
 import matplotlib.pyplot as plt 
 import numpy as np 
 
@@ -38,7 +39,8 @@ def main(path):
             line = line.strip()
             if line:
                 binary_keys.append(int(line))
-
+    
+    bin1 = np.array(binary_keys)
     plt.title("Autocorrelation Plot") 
     plt.xlabel("Lags") 
     #plot autocorrelation
@@ -51,9 +53,9 @@ def main(path):
     print("Pearson correlation coefficient between keys:", correlation_coefficient)
 
 if __name__ == "__main__":
-    #path = str(sys.argv[1])
+    path = str(sys.argv[1])
     #path = "sampleData/nonRandomLooksRandom"
     #path = "sampleData/nonRandom"
     #path = "sampleData/snippetTeks"
-    path = "//wsl.localhost//Ubuntu//tmp//chosenBitscd6wlfz0.tekBits"
+    #path = "//wsl.localhost//Ubuntu//tmp//chosenBitsr0lzrvxp.tekBits"
     main(path)

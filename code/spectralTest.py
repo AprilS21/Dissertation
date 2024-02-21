@@ -45,7 +45,7 @@ def main():
         # file in binary, strings of binary
         for line in file:
             line = line.strip()
-            line = bin(int(line.strip(), 16))[2:]
+            #line = bin(int(line.strip(), 16))[2:]
             if line:
                 countKeys += 1
                 x = spectral(line)
@@ -56,8 +56,8 @@ def main():
 
 
 if __name__ == "__main__":
-    #path = str(sys.argv[1])
+    path = str(sys.argv[1])
     #path = "sampleData/nonRandomLooksRandom"
-    path = "sampleData/nonRandom"
+    #path = "sampleData/nonRandom"
     #path = "sampleData/snippetTeks"
     main()

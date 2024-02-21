@@ -1,53 +1,56 @@
+import sys
 from scipy.stats import chi2_contingency
 
-def chi_squared_test_for_randomness(binary_keys):
-    """
-    Perform the chi-squared test for randomness on a set of binary keys.
 
-    Parameters:
-    binary_keys (list): A list of binary keys (0 or 1).
+def chi_squared_test_for_randomness(binary_keys:str):
+    """
+    Performs a chi-squared test for randomness on a set of binary keys.
+
+    Args:
+    binary_keys (list): List of binary keys (0s and 1s), strings.
 
     Returns:
-    tuple: A tuple containing the test statistic, p-value, degrees of freedom,
-           and the expected frequencies array.
+    p_value (float): The p-value obtained from the chi-squared test.
     """
-    observed_frequencies = [binary_keys.count(0), binary_keys.count(1)]
-    total_keys = sum(observed_frequencies)
-    expected_frequency = total_keys / 2  # Since we have 2 categories (0 and 1)
 
-    # Perform the chi-squared test
-    chi2_stat, p_val = chi2_contingency([observed_frequencies])[0:2]
+    zeros =0
+    ones =0
+    for x in binary_keys:
+        zeros += x.count('0')
+        ones += x.count('1')
+    #print(binary_keys)
+    print("Number of zeros:" , zeros)
+    print("Number of ones: ", ones)
+    # observed frequencies array
+    observed_freq = [zeros, ones]
 
-    return chi2_stat, p_val, 1, [[expected_frequency, expected_frequency]]
+    # Expected frequencies, 50% chance of either
+    total_count = zeros + ones
+    expected_freq = [total_count / 2, total_count / 2]
+
+    chi2, p_value, _, _ = chi2_contingency([observed_freq, expected_freq])
+
+    return chi2, p_value, expected_freq
 
 
-def chi_squared_test_for_randomness_from_file(file_path):
-    """
-    Perform the chi-squared test for randomness on a set of binary keys read from a file.
-
-    Parameters:
-    file_path (str): The path to the file containing binary keys, one key per line.
-
-    Returns:
-    tuple: A tuple containing the test statistic, p-value, degrees of freedom,
-           and the expected frequencies array.
-    """
-    # Read binary keys from file
+def main(path):
     binary_keys = []
 
-    with open(file_path, 'r') as file:
+    with open(path, 'r') as file:
         # file in binary, strings of binary
         for line in file:
             line = line.strip()
             if line:
-               binary_keys.append(int(line))
+               binary_keys.append(line)
     print(len(binary_keys))
-    print(binary_keys[0])
-    return chi_squared_test_for_randomness(binary_keys)
 
-file_path = "//wsl.localhost//Ubuntu//tmp//chosenBitsjmqeohbo.tekBits" 
-chi2_stat, p_val, dof, expected_freq = chi_squared_test_for_randomness_from_file(file_path)
-print("Chi-squared Statistic:", chi2_stat)
-print("P-value:", p_val)
-print("Degrees of Freedom:", dof)
-print("Expected Frequencies:", expected_freq)
+    chi, pval, expected_freq = chi_squared_test_for_randomness(binary_keys)
+    print("Chi-squared Statistic:", chi)
+    print("P-value:", pval)
+    print("Expected Frequencies:", expected_freq)
+
+if __name__ == "__main__":
+    #path = "//wsl.localhost//Ubuntu//tmp//chosenBitsr0lzrvxp.tekBits"
+    path = str(sys.argv[1])
+    #path = "sampleData/test"
+    main(path)
