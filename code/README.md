@@ -8,9 +8,12 @@
 --- 
 
 ## Tests
-- spectralTest.R is an R script to perform spectral test for randomness, BROKEN, has issues with binary
 - spectralTest.py is a python script to perform spectral test for randomness, the method returns a p-value. Prints the number of significant p-values out of all the keys.
 - hilbertCurve.py, python script to plot a hilbert curve of the keys, hexadecimal format.
+- countBits.py counts the number of 1s and 0s at each bit position of the given file. It plots the results.
+- chisquared.py runs chi squared test on given binary file. Returns chi squared test statistic and p value.
+- autocorrelation.py performs autocorrelation analysis. Does it twice using two methods to compare. The data is normalised in one of the methods. Plots the results.
+- lagplot.py produces lagplot for the given binary data.
 
 ---
 
@@ -23,10 +26,10 @@
 
 Example usage:
 ```
-bash pipeline.sh "D:\Dissertation\data_dest\uniques\snippetTeks" 1 5 1
+bash pipeline.sh "D:\Dissertation\data_dest\uniques\snippetTeks" 1 56 1
 ```
 
-This script passes the parameters to the extractBits.py script. I will expand this script to pass the outputed file to the tests, etc.
+This script passes the parameters to the extractBits.py script and the tests mentioned above. Calls dieharder but is commented out for the moment. 
 
 - extractBits.py extracts the desired bits from the data. It takes startBit, endBit, runBool and file_path as parameters. The passed file should be in hexadecimal format. It converts each key in the file to binary and extracts the chosen bits. startBit is the first bit you want to extract and endBit is the last. runBool is used to choose whether you want all the bits inbetween startBit and endBit or just those bits themselves. It stores the bits in a temporary  named file. 
 
