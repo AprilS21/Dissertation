@@ -1,4 +1,5 @@
 #!/bin/python
+import csv
 import sys
 import matplotlib.pyplot as plt
 import numpy as np
@@ -53,19 +54,27 @@ def main(path):
     percentageZerosArray = [0]*128
     percentageOnesArray = [0]*128
     print("Bit,zeros,ones,total")
-    for index,x in enumerate(zip(countZeros, countOnes)):
-        #print("count zeros vs ones on bit ", index, " is: ", x)
-        totalCount = x[0] + x[1]
-        percentageZeros = x[0]/totalCount * 100
-        percentageZerosArray[index] = percentageZeros
-        percentageOnes = x[1]/totalCount * 100
-        percentageOnesArray[index] = percentageOnes
-        # print("Bit ", index, " percentage of zeros ", percentageZeros,
-              # " and percentage ones ", percentageOnes)
-        print(index, ",", percentageZeros, ",", percentageOnes,
-              ",", totalCount)
+
+    with open('bitCounts.csv', 'w', newline='') as file:
+        writer = csv.writer(file)
+        field = ["index", "countZero", "countOnes", "percentZeros", "percentOnes"]
+        
+        writer.writerow(field)
+        for index,x in enumerate(zip(countZeros, countOnes)):
+            #print("count zeros vs ones on bit ", index, " is: ", x)
+            totalCount = x[0] + x[1]
+            percentageZeros = x[0]/totalCount * 100
+            percentageZerosArray[index] = percentageZeros
+            percentageOnes = x[1]/totalCount * 100
+            percentageOnesArray[index] = percentageOnes
+            # print("Bit ", index, " percentage of zeros ", percentageZeros,
+                # " and percentage ones ", percentageOnes)
+            print(index, ",", percentageZeros, ",", percentageOnes,
+                ",", totalCount)
+            writer.writerow([index, x[0], x[1], percentageZeros, percentageOnes])
 
     bit_positions = np.arange(128)
+
 
     #Plot bar chart
     plt.figure(figsize=(12, 8))
