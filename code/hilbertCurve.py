@@ -33,9 +33,22 @@ def plot_hilbert_curve(hex_keys):
     plt.savefig('./hilbertCurve.png')
 
 def main(path):
+    hex_keys = []
+    line_count =0
     with open(path, 'r') as file:
-            hex_keys = file.readlines()
-
+        for line in file:
+            if (len(line) != 33):
+                line_count += 1
+                print("Skipping bad length line at",line_count,"line:",line,file=sys.stderr)
+                print("length",len(line),file=sys.stderr)
+                continue
+            try:
+                hex_keys.append(line)
+                line_count += 1
+            except Exception as e:
+                print("Exception",e,"at",line_count,file=sys.stderr)
+                print("Line:",line,file=sys.stderr)
+        
     plot_hilbert_curve(hex_keys)
 
 if __name__ == "__main__":
