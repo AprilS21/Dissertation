@@ -82,3 +82,8 @@ Below is a list of potential test approachs for my dissertation, and tests I sho
 
 Choosing the appropriate level of significance involves balancing the risk of false positives against false negatives.  A value of a=0.05 implies that the null hypothesis is rejected 5 per cent of the time when it is in fact true. The choice of a is somewhat arbitrary, although in practice values of 0.1, 0.05, and 0.01 are common~(\cite{nist}). False positives may lead to us rejecting keys that are actually random and false negatives could mean accepting keys that are non random as random. Larger datasets may allow us to use lower significance levels as more data allows us to detect non randomness better. \par
 Currently using alpa = 0.5. NIST~(\cite{1195701}) says . Common values of a in cryptography are about 0.01. 
+
+"Because there are so many 
+tests for judging whether a sequence is random or not, no specific finite set of tests is deemed “complete.” 
+In addition, the results of statistical testing must be interpreted with some care and caution to avoid 
+incorrect conclusions about a specific generator" https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-22r1a.pdf
