@@ -7,14 +7,63 @@ The NIST and Dieharder test suites were chosen to evaluate the GAEN keys.
 
 (May not be used because it wants streams of random numbers as input) NIST is widely used in industry~(\cite{9209663})~(\cite{9232553})~(\cite{6236554}) and is accepted as a standard. It contains tests that are recommended by NIST for the evaluation of PRNGs used in cryptography. \par
 
-Dieharder ?
+Dieharder is another widely used battery of tests for randomness created by Robert G. Brown. It is an extension of the Diehard suite of tests created by George Marsgalia.
+
+\begin{table}[!h]
+	\begin{center}
+		\begin{tabular}{|l|c|} 
+		\hline
+		 \bf  Dieharder Test & \bf Descriptions  \\
+		  \hline
+		Birthdays Test & Item 1 \\
+		OPERM5 Test & Item 1 \\
+		32x32 Binary Rank Test & Item 1 \\
+		6x8 Binary Rank Test & Item 1 \\
+		Bitstream Test & Item 1 \\
+		OPSO & Item 1 \\
+		DNA Test & Item 1 \\
+		Count the 1s stream Test & Item 1 \\
+		Count the 1s byte Test & Item 1 \\
+		Parking Lot Test & Item 1 \\
+		Minimum Distance 2d circle Test & Item 1 \\
+		Minimum Distance 3d sphere Test & Item 1 \\
+		Squeeze Test & Item 1 \\
+		Runs Test & Item 1 \\
+		Craps Test & Item 1 \\
+		Tang and Marsgalia GCD Test & Item 1 \\
+		STS Monobit Test & Item 1 \\
+		STS runs Test & Item 1 \\
+		STS serial Test & Item 1 \\
+		RGB Bit Distribution Test & Item 1 \\
+		RGB Generalised Minimum Distance Test & Item 1 \\
+		RGB Permutations Test & Item 1 \\
+		RGB Lagged Sum Test & Item 1 \\
+		RGB Kolmogorov-Smirnov Test & Item 1 \\
+		Byte Distribution & Item 1 \\
+		DAB DCT & Item 1 \\
+		DAB Fill Tree Test & Item 1 \\
+		DAB Fill Tree 2 Test & Item 1 \\
+		DAB Monobit 2 Test & Item 1 \\
+		\hline
+		\end{tabular}
+	\end{center}
+	\caption[Comparison of Closely-Related Projects]{Tests in Dieharder test suite}	
+	\label{tab:SummaryProjects}
+	\end{table}
 
 \subsection{Other Tests}
 
 Some tests outside of the test suites were performed. These include chi-squared test, lagplot and hilbert curve. 
 The counts of the numbers of 1s and 0s in each bit position were also recorded and this data was plotted to allow for quick inspection. \par
 
-This is a non-exhaustive list of possible tests. There are endless tests that can be ran to build confidence that the keys are random, however it is never certain if the data is truly random or not.
+This is a non-exhaustive list of possible tests. There are endless tests that can be ran to build confidence that the keys are random, however it is never certain if the data is truly random or not. The tests done here detect deviations from randomness rather than prove randomness. \par
+
+\textbf{Lagplot} "A lag plot checks whether a data set or time series is random or not. Random data should not exhibit any identifiable structure in the lag plot. Non-random structure in the lag plot indicates that the underlying data are not random"~(\cite{lagplot})\par
+\textbf{Hilbert Curve} why ??\par
+\textbf{Spectral Test (Discrete FFT)} Note that this description is taken from the NIST documentation http://csrc.nist.gov/publications/nistpubs/800-22-rev1a/SP800-22rev1a.pdf . The focus of this test is the peak heights in the Discrete Fourier Transform of the sequence. The purpose of this test is to detect periodic features (i.e., repetitive patterns that are near each other) in the tested sequence that would indicate a deviation from the assumption of randomness. The intention is to detect whether the number of peaks exceeding the 95per cent threshold is significantly different than 5per cent.\par
+\textbf{Chi-squared} A chi-square test checks how many items you observed in a bin vs how many you expected to have in that bin. It does so by summing the squared deviations between observed and expected across all bins (expand)\par
+\textbf{Plot of Counts} Counts number of 0s and 1s in each bit position. Should be 50-50 1s and 0s. A plot of the data quickly shows any potential biases.\par
+
 
 \section{Closely-Related Work}
 \subsection{Aspect \#1}
