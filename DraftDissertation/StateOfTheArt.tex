@@ -1,93 +1,35 @@
 \chapter{State of the Art}
-\section{Chosen Tests}
+Introduction to chapter
 
-\subsection{Test Suites}
+\section{Background}
 
-The NIST and Dieharder test suites were chosen to evaluate the GAEN keys. 
+\subsection{What are GAEN keys}
+\subsubsection{GAEN Apps}
+Google and Apple developed the Google/Apple Exposure Notification (GAEN) system to facilitate contact tracing in response to the Covid-19 Pandemic. (Mention conventional contact tracing). Nations across the world used this technology to create contract tracing apps, for example Covid Tracker in Ireland and SwissCovid in Switzerland~(\cite{9488728}).  \par
 
-(May not be used because it wants streams of random numbers as input) NIST is widely used in industry~(\cite{9209663})~(\cite{9232553})~(\cite{6236554}) and is accepted as a standard. It contains tests that are recommended by NIST for the evaluation of PRNGs used in cryptography. \par
-
-Dieharder is another widely used battery of tests for randomness created by Robert G. Brown. It is an extension of the Diehard suite of tests created by George Marsgalia.
-
-\begin{table}[!h]
-	\begin{center}
-		\begin{tabular}{|l|c|} 
-		\hline
-		 \bf  Dieharder Test & \bf Descriptions  \\
-		  \hline
-		Birthdays Test & Item 1 \\
-		OPERM5 Test & Item 1 \\
-		32x32 Binary Rank Test & Item 1 \\
-		6x8 Binary Rank Test & Item 1 \\
-		Bitstream Test & Item 1 \\
-		OPSO & Item 1 \\
-		DNA Test & Item 1 \\
-		Count the 1s stream Test & Item 1 \\
-		Count the 1s byte Test & Item 1 \\
-		Parking Lot Test & Item 1 \\
-		Minimum Distance 2d circle Test & Item 1 \\
-		Minimum Distance 3d sphere Test & Item 1 \\
-		Squeeze Test & Item 1 \\
-		Runs Test & Item 1 \\
-		Craps Test & Item 1 \\
-		Tang and Marsgalia GCD Test & Item 1 \\
-		STS Monobit Test & Item 1 \\
-		STS runs Test & Item 1 \\
-		STS serial Test & Item 1 \\
-		RGB Bit Distribution Test & Item 1 \\
-		RGB Generalised Minimum Distance Test & Item 1 \\
-		RGB Permutations Test & Item 1 \\
-		RGB Lagged Sum Test & Item 1 \\
-		RGB Kolmogorov-Smirnov Test & Item 1 \\
-		Byte Distribution & Item 1 \\
-		DAB DCT & Item 1 \\
-		DAB Fill Tree Test & Item 1 \\
-		DAB Fill Tree 2 Test & Item 1 \\
-		DAB Monobit 2 Test & Item 1 \\
-		\hline
-		\end{tabular}
-	\end{center}
-	\caption[Comparison of Closely-Related Projects]{Tests in Dieharder test suite}	
-	\label{tab:SummaryProjects}
-	\end{table}
-
-\subsection{Other Tests}
-
-Some tests outside of the test suites were performed. These include chi-squared test, lagplot and hilbert curve. 
-The counts of the numbers of 1s and 0s in each bit position were also recorded and this data was plotted to allow for quick inspection. \par
-
-This is a non-exhaustive list of possible tests. There are endless tests that can be ran to build confidence that the keys are random, however it is never certain if the data is truly random or not. The tests done here detect deviations from randomness rather than prove randomness. \par
-
-\textbf{Lagplot} "A lag plot checks whether a data set or time series is random or not. Random data should not exhibit any identifiable structure in the lag plot. Non-random structure in the lag plot indicates that the underlying data are not random"~(\cite{lagplot})\par
-\textbf{Hilbert Curve} why ??\par
-\textbf{Spectral Test (Discrete FFT)} Note that this description is taken from the NIST documentation http://csrc.nist.gov/publications/nistpubs/800-22-rev1a/SP800-22rev1a.pdf . The focus of this test is the peak heights in the Discrete Fourier Transform of the sequence. The purpose of this test is to detect periodic features (i.e., repetitive patterns that are near each other) in the tested sequence that would indicate a deviation from the assumption of randomness. The intention is to detect whether the number of peaks exceeding the 95per cent threshold is significantly different than 5per cent.\par
-\textbf{Chi-squared} A chi-square test checks how many items you observed in a bin vs how many you expected to have in that bin. It does so by summing the squared deviations between observed and expected across all bins (expand)\par
-\textbf{Plot of Counts} Counts number of 0s and 1s in each bit position. Should be 50-50 1s and 0s. A plot of the data quickly shows any potential biases.\par
+The way the contact tracing works, if a user enables it, is as follows:
+\begin{itemize}
+    \item Every 10-20 minutes the user's device will generate a random 128-bit key, referred to as a Temporary Exposure Key (TEK). 
+    \item The user's device will broadcast these keys using Bluetooth Low Energy (BLE). 
+    \item The user's device will listen and store the TEKs being broadcasted from other devices within a certain radius. These TEKs are stored locally on the device.
+    \item If a user tests positive for Covid, they can log this into the app. The app will send the user's recent TEKs (around the 14 days) to a central server managed by the local health authority.
+    \item Every approx. 2 hours, the user's device will download the TEKs from the central server.
+    \item The app compares these downloaded TEKs to the TEKs stored locally on the device.
+    \item If there is a match, this means that the user has potentially been exposed to Covid and the app will notify them. 
+    \item CITES
+\end{itemize}
+\subsubsection{How Keys are Generated}
+Not sure if i will include this or not yet.
+\subsubsection{Analysis on Apps}
+There have been numerous studies done on contact tracing apps that use GAEN technology. Google and Apple acknowledge that keeping users' information private and secure is essential to the success of the contact tracing app and claim to have designed their system with this central to the design ~(\cite{12345}).  Why is privacy so important for this app? Don't want to share covid status etc.\par
+The major privacy concerns of GAEN apps according to ~(\cite{9931613}) are the identification of users, tracking users or extracting the social graph of users. Contact tracing should aim to identify encounters rather than actual users, by doing so they should not leak any information that could be used to identify the user. Similarly, the data collected should not be able to be used to create the social graph of the user, the social connections and relationships of a user. Having this information could potentially result in the user being identified. \par
+Security is also a requirement for a contact tracing app according to ~(\cite{9931613}). The system should be resilient to large scale data pollution attacks. These could be fake exposure claims, where users may falsely claim they have been exposed in order to get out of work or another obligation or in an attempt to damage the reputation and credibility of the contact tracing apps. Fake exposure injection, a relay attack, may send users false notifications of potential exposures. The attacker could do this by capturing the TEKs of some user and broadcasting them in another location, leading to people being falsely notified of exposure. This could result in panic among users and the population, putting further strain on the healthcare system by creating a demand for unnecessary tests. It could also damage the trust in the contact tracing apps as their accuracy would be no longer trusted. \par
+~(\cite{9931613})  assess the GAEN apps on a variety of requirements. In terms of effectiveness, GAEN has been found to be imprecise at determining the distances between user devices (do i need to reference an internal reference?). Its use of BLE means scanning of the user's surroundings for other devices can only happen with frequent pauses to save battery life of the device. Many factors like positioning of the device's antenna, obstacles in the way and orientation of the device affect the computation of the distance between devices and the errors are significant. GAEN fails to account for 'superspreaders' of the virus, an individual who is very contagious and infects a number of other people. GAEN also does not have any mechanism for dealing with asymptomatic individuals, people that are infected with the virus and are contagious but do not show symptoms. Unknowingly, these people spread the virus. These individuals are unlikely to get tested and therefore won't log their infection in the app, meaning those that come in contact with them will not be notified of a potential exposure. This significantly impacts the effectiveness of the contact tracing apps. \par
+An investigation into the data shared by Europe's contact tracing apps that use GAEN ~(\cite{9488728}) discovered that a significant amount of data was being sent to Google servers. The android implementations of the GAEN systems use Google Play Services to facilitate GAEN-based contact tracing. The user must enable Google Play Services. It was found that Google Play Services connects to Google servers approximately every 20 minutes, sending requests that include the handset IP address, location data and persistent identifiers to link requests coming from the same device. The data sent to Google in other types of requests also include phone IMEI, device hardware serial number, SIM serial number and IMSI, phone number, WiFi MAC address, user email and Android ID. While sharing data to backend servers is not in itself an intrusion of privacy, the ability to link this data to a real-world user is problematic. Given that the user's IP address is being sent to Google very frequently, this could be used as location tracking. It is possible to de-anonymise this location data and potentially identify the user. Given that the user must enable Google Play Services, and therefore this data sharing, to do contact tracing, this does raise a concern to the privacy of the user. \par
 
 
-\section{Closely-Related Work}
-\subsection{Aspect \#1}
+\subsection{What is Randomness}
 
-
-\subsection{Aspect \#2}
-
-\section{Summary}
-
-Summarize the chapter and present a comparison of the projects that you reviewed.
-
-\begin{table}[!h]
-\begin{center}
-	\begin{tabular}{|l|c|c|} 
-	\hline
- 	\bf  & \bf Aspect \#1  & \bf Aspect \#2 \\
-  	\hline
-	Row 1 & Item 1 & Item 2 \\
-	Row 2 & Item 1 & Item 2 \\
-	Row 3 & Item 1 & Item 2 \\
-	Row 4 & Item 1 & Item 2 \\
-	\hline
-	\end{tabular}
-\end{center}
-\caption[Comparison of Closely-Related Projects]{Caption that explains the table to the reader}	
-\label{tab:SummaryProjects}
-\end{table}
+\section{Literature Review}
+\subsection{How to Test for randomness/ Analyses done}
+\subsection{Examples of Randomness Failures}
