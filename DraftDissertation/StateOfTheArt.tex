@@ -29,8 +29,32 @@ An investigation into the data shared by Europe's contact tracing apps that use 
 
 
 \subsection{What is Randomness}
-
-In order to test for randomness/non-randomness we must first define what randomness is. A random bit sequence could be explained as the result of flipping an unbiased coin, with two sides 1 and 0, which has an equal chance of 50 per cent of landing on side 1 or side 0. Each flip of the coin does not affect any future coin flips which means the flips are independent of each other. This unbiased coin can therefore be considered a perfect random bit stream generator as the appearances of 1s and 0s will be randomly and uniformly distributed. All elements in the sequence are independent of each other and future elements in the sequence cannot be predicted using previous elements. CITE NIST Special Publication 800-107 Revision 1, Recommendation for Applications Using Approved Hash Algorithms. This simple example gives us an understanding of what it means for a set of keys to be random. The keys must exhibit certain properties in order to be accepted as random: they should be independent and equally likely. (?).
+In order to test for randomness/non-randomness we must first define what randomness is. A random bit sequence could be explained as the result of flipping an unbiased coin, with two sides 1 and 0, which has an equal chance of 50 percent of landing on side 1 or side 0. Each flip of the coin does not affect any future coin flips which means the flips are independent of each other. This unbiased coin can therefore be considered a perfect random bit stream generator as the appearances of 1s and 0s will be randomly and uniformly distributed. All elements in the sequence are independent of each other and future elements in the sequence cannot be predicted using previous elements. CITE NIST Special Publication 800-107 Revision 1, Recommendation for Applications Using Approved Hash Algorithms This simple example gives us an understanding of what it means for a set of keys to be random. \par
+The keys must exhibit certain properties in order to be accepted as random. They should be independent meaning no previously generated keys affect a new key.  Equally likely meaning that  the probability of a 0 or 1 appearing at any point in the key is equal to ½. Scalable meaning that if the key is random, then any extracted subsequence is also random. Any indication of a dependency or bias within the data would indicate nonrandomness. 
 \section{Literature Review}
 \subsection{How to Test for randomness/ Analyses done}
+It is important to note that you can not say for certain whether something is random or not, you can only find evidence against non-randomness. It is not possible to give theoretical proof of randomness of a sequence. CITE (55555) Various statistical tests can be performed on the data in an attempt to compare and evaluate the data against a truly random sequence since the outcome when a statistical test is applied to a truly random sequence is known. ~(\cite{98765}).\par
+A challenge when testing for randomness is that there is no agreed upon complete set of statistical tests to deem a sequence random ~(\cite{98765}). There is an infinite number of tests that you could run in order to find the presence or absence of a pattern or bias within the data. The existence of a pattern or bias within the data would indicate that it is non randomness. \par
+
+\subsubsection{Hypothesis testing}
+
+Statistical testing is used to test against a defined null hypothesis (h0). The null hypothesis in this case is that the keys being tested are random. The alternative hypothesis (h1) is that the keys are not random. The challenge here is to determine which of these hypotheses can be accepted CITE 10.1145/3447773 . For each statistical test run on the data, the result accepts or rejects the null hypothesis. \par
+
+The following table shows the possible results on a hypothesis test:
+ <table> CITE 98765 \par
+
+The above situations are somewhat unknown but some control can be gained by knowing the probability of each of the error situations. The probability of Error Type 1 is defined as a, the level of significance. CITE 10.1145/3447773. This value is typically 0.01, 0.05 or 0.10. The probability of Error Type 2 is defined as B, referred to as contrast power and is usually used as 1-B. CITE 10.1145/3447773. If the data is truly random, rejecting the null hypothesis, determining that the data is non-random, will occur a small percentage of the time. For example if a is 0.01, it would be expected that 1 sequence in 100 sequences is rejected.  CITE 98765\par
+
+In practice, p-values are used to reject or accept the null hypothesis. In the context of this project, a p-value can be defined as the probability that a key produced is less random than the keys previously tested, given the kind of non-randomness the test is assessing CITE 98765. NEED TO FIX. A p-value equal to 1 indicates that the data is perfectly random while a p-value equal to 0 indicates that the data is completely non random. If the p-value is greater than or equal to a, the null hypothesis is accepted and the data appears to be random. If the p-value is less than a, the null hypothesis is rejected and the data is deemed non random. \par
+
+Maybe K-S stuff here or later on
+TALK ABOUT test suites and what they are, not specific to one
+
+\subsection{Analyses done}
+Intro something like many examples of randomness testing being used on cryptographic techniques/applications. \par
+
+Given that encryption is essential for maintaining data security in cloud computing, ~(\cite{6236554}) performed randomness testing on eight modern encryption techniques, including AES, MARS and DES. They tested on two different platforms, desktop computer and Amazon EC2 Micro Instance. They evaluated the encryption techniques implemented as Pseudo Random Number Generators (PRNGs). They used the NIST Test Suite to perform the randomness testing. With a significance level of 0.01, any p-value less than 0.01 meant that sequence was rejected. They found no strong evidence of any statistical non randomness across the 8 encryption algorithms however some differences were found between them on the two different platforms. \par
+
+Statistical analysis has been run on an enhanced SDEx encryption method based on the SHA-512 hash function ~(\cite{9209663}). Using various tests like frequency, cumulative sums and runs, with a significance level of 0.01, it was found that this encryption algorithm was sufficiently random and passed the tests. \par
+
 \subsection{Examples of Randomness Failures}
