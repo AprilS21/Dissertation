@@ -1,11 +1,14 @@
 \chapter{State of the Art}
-Introduction to chapter
+
+Give introduction
 
 \section{Background}
+Introduction
 
-\subsection{What are GAEN keys}
-\subsubsection{GAEN Apps}
-Google and Apple developed the Google/Apple Exposure Notification (GAEN) system to facilitate contact tracing in response to the Covid-19 Pandemic. (Mention conventional contact tracing). Nations across the world used this technology to create contract tracing apps, for example Covid Tracker in Ireland and SwissCovid in Switzerland~(\cite{9488728}).  \par
+\subsection{What are GAEN Keys}
+Introduction
+\subsubsection{Contact Tracing Apps}
+Google and Apple developed the Google/Apple Exposure Notification (GAEN) system to facilitate contact tracing in response to the Covid-19 Pandemic. (Mention conventional contact tracing). Nations across the world used this technology to create contract tracing apps, for example Covid Tracker in Ireland and SwissCovid in Switzerland~(\cite{9488728}).  \newline
 
 The way the contact tracing works, if a user enables it, is as follows:
 \begin{itemize}
@@ -18,43 +21,55 @@ The way the contact tracing works, if a user enables it, is as follows:
     \item If there is a match, this means that the user has potentially been exposed to Covid and the app will notify them. 
     \item CITES
 \end{itemize}
-\subsubsection{How Keys are Generated}
-Not sure if i will include this or not yet.
-\subsubsection{Analysis on Apps}
-There have been numerous studies done on contact tracing apps that use GAEN technology. Google and Apple acknowledge that keeping users' information private and secure is essential to the success of the contact tracing app and claim to have designed their system with this central to the design ~(\cite{12345}).  Why is privacy so important for this app? Don't want to share covid status etc.\par
-The major privacy concerns of GAEN apps according to ~(\cite{9931613}) are the identification of users, tracking users or extracting the social graph of users. Contact tracing should aim to identify encounters rather than actual users, by doing so they should not leak any information that could be used to identify the user. Similarly, the data collected should not be able to be used to create the social graph of the user, the social connections and relationships of a user. Having this information could potentially result in the user being identified. \par
-Security is also a requirement for a contact tracing app according to ~(\cite{9931613}). The system should be resilient to large scale data pollution attacks. These could be fake exposure claims, where users may falsely claim they have been exposed in order to get out of work or another obligation or in an attempt to damage the reputation and credibility of the contact tracing apps. Fake exposure injection, a relay attack, may send users false notifications of potential exposures. The attacker could do this by capturing the TEKs of some user and broadcasting them in another location, leading to people being falsely notified of exposure. This could result in panic among users and the population, putting further strain on the healthcare system by creating a demand for unnecessary tests. It could also damage the trust in the contact tracing apps as their accuracy would be no longer trusted. \par
-~(\cite{9931613})  assess the GAEN apps on a variety of requirements. In terms of effectiveness, GAEN has been found to be imprecise at determining the distances between user devices (do i need to reference an internal reference?). Its use of BLE means scanning of the user's surroundings for other devices can only happen with frequent pauses to save battery life of the device. Many factors like positioning of the device's antenna, obstacles in the way and orientation of the device affect the computation of the distance between devices and the errors are significant. GAEN fails to account for 'superspreaders' of the virus, an individual who is very contagious and infects a number of other people. GAEN also does not have any mechanism for dealing with asymptomatic individuals, people that are infected with the virus and are contagious but do not show symptoms. Unknowingly, these people spread the virus. These individuals are unlikely to get tested and therefore won't log their infection in the app, meaning those that come in contact with them will not be notified of a potential exposure. This significantly impacts the effectiveness of the contact tracing apps. \par
-An investigation into the data shared by Europe's contact tracing apps that use GAEN ~(\cite{9488728}) discovered that a significant amount of data was being sent to Google servers. The android implementations of the GAEN systems use Google Play Services to facilitate GAEN-based contact tracing. The user must enable Google Play Services. It was found that Google Play Services connects to Google servers approximately every 20 minutes, sending requests that include the handset IP address, location data and persistent identifiers to link requests coming from the same device. The data sent to Google in other types of requests also include phone IMEI, device hardware serial number, SIM serial number and IMSI, phone number, WiFi MAC address, user email and Android ID. While sharing data to backend servers is not in itself an intrusion of privacy, the ability to link this data to a real-world user is problematic. Given that the user's IP address is being sent to Google very frequently, this could be used as location tracking. It is possible to de-anonymise this location data and potentially identify the user. Given that the user must enable Google Play Services, and therefore this data sharing, to do contact tracing, this does raise a concern to the privacy of the user. \par
+
+\subsubsection{Studies on GAEN-based Apps}
+
+There have been numerous studies done on contact tracing apps that use GAEN technology. Google and Apple acknowledge that keeping users' information private and secure is essential to the success of the contact tracing app and claim to have designed their system with this central to the design ~(\cite{12345}).  Why is privacy so important for this app? Don't want to share covid status etc. \newline
+
+The major privacy concerns of GAEN apps according to ~(\cite{9931613}) are the identification of users, tracking users or extracting the social graph of users. Contact tracing should aim to identify encounters rather than actual users, by doing so they should not leak any information that could be used to identify the user. Similarly, the data collected should not be able to be used to create the social graph of the user, the social connections and relationships of a user. Having this information could potentially result in the user being identified. \newline
+
+Security is also a requirement for a contact tracing app according to ~(\cite{9931613}). The system should be resilient to large scale data pollution attacks. These could be fake exposure claims, where users may falsely claim they have been exposed in order to get out of work or another obligation or in an attempt to damage the reputation and credibility of the contact tracing apps. Fake exposure injection, a relay attack, may send users false notifications of potential exposures. The attacker could do this by capturing the TEKs of some user and broadcasting them in another location, leading to people being falsely notified of exposure. This could result in panic among users and the population, putting further strain on the healthcare system by creating a demand for unnecessary tests. It could also damage the trust in the contact tracing apps as their accuracy would be no longer trusted. \newline
+
+~(\cite{9931613})  assess the GAEN apps on a variety of requirements. In terms of effectiveness, GAEN has been found to be imprecise at determining the distances between user devices (do i need to reference an internal reference?). Its use of BLE means scanning of the user's surroundings for other devices can only happen with frequent pauses to save battery life of the device. Many factors like positioning of the device's antenna, obstacles in the way and orientation of the device affect the computation of the distance between devices and the errors are significant. GAEN fails to account for 'superspreaders' of the virus, an individual who is very contagious and infects a number of other people. GAEN also does not have any mechanism for dealing with asymptomatic individuals, people that are infected with the virus and are contagious but do not show symptoms. Unknowingly, these people spread the virus. These individuals are unlikely to get tested and therefore won't log their infection in the app, meaning those that come in contact with them will not be notified of a potential exposure. This significantly impacts the effectiveness of the contact tracing apps. \newline
+
+An investigation into the data shared by Europe's contact tracing apps that use GAEN ~(\cite{9488728}) discovered that a significant amount of data was being sent to Google servers. The android implementations of the GAEN systems use Google Play Services to facilitate GAEN-based contact tracing. The user must enable Google Play Services. It was found that Google Play Services connects to Google servers approximately every 20 minutes, sending requests that include the handset IP address, location data and persistent identifiers to link requests coming from the same device. The data sent to Google in other types of requests also include phone IMEI, device hardware serial number, SIM serial number and IMSI, phone number, WiFi MAC address, user email and Android ID. While sharing data to backend servers is not in itself an intrusion of privacy, the ability to link this data to a real-world user is problematic. Given that the user's IP address is being sent to Google very frequently, this could be used as location tracking. It is possible to de-anonymise this location data and potentially identify the user. Given that the user must enable Google Play Services, and therefore this data sharing, to do contact tracing, this does raise a concern to the privacy of the user. \newline
+
+~(\cite{9928557}) examines several potential threats and privacy concerns of GAEN apps. They introduce a ‘paparazzi attack’ which involves using passive Bluetooth devices to capture the keys being broadcasted from a targeted user. If this user tests positive, the attacker can match their locally stored keys to those made publically available on the central server and learn that the user is positive for covid. This is a form of deanonymization. Similarly, an attacker could exploit the movements of a targeted user to gain money by linking the locations of the passive devices to the keys and sell this data to interested parties. \newline
+
+The effectiveness of these GAEN contact tracing apps is undetermined ~(\cite{9488728})~(\cite{9931613}) 
+
+Numerous alternative to the GAEN system have been proposed such as TraceCorona by ~(\cite{9931613}) in an attempt to remedy the above privacy and security concerns.
 
 
 \subsection{What is Randomness}
-In order to test for randomness/non-randomness we must first define what randomness is. A random bit sequence could be explained as the result of flipping an unbiased coin, with two sides 1 and 0, which has an equal chance of 50 percent of landing on side 1 or side 0. Each flip of the coin does not affect any future coin flips which means the flips are independent of each other. This unbiased coin can therefore be considered a perfect random bit stream generator as the appearances of 1s and 0s will be randomly and uniformly distributed. All elements in the sequence are independent of each other and future elements in the sequence cannot be predicted using previous elements. CITE NIST Special Publication 800-107 Revision 1, Recommendation for Applications Using Approved Hash Algorithms This simple example gives us an understanding of what it means for a set of keys to be random. \par
-The keys must exhibit certain properties in order to be accepted as random. They should be independent meaning no previously generated keys affect a new key.  Equally likely meaning that  the probability of a 0 or 1 appearing at any point in the key is equal to ½. Scalable meaning that if the key is random, then any extracted subsequence is also random. Any indication of a dependency or bias within the data would indicate nonrandomness. 
+
+In order to test for randomness/non-randomness we must first define what randomness is. A random bit sequence could be explained as the result of flipping an unbiased coin, with two sides 1 and 0, which has an equal chance of 50 percent of landing on side 1 or side 0. Each flip of the coin does not affect any future coin flips which means the flips are independent of each other. This unbiased coin can therefore be considered a perfect random bit stream generator as the appearances of 1s and 0s will be randomly and uniformly distributed. All elements in the sequence are independent of each other and future elements in the sequence cannot be predicted using previous elements ~(\cite{Nistdoc2}). This simple example gives us an understanding of what it means for a set of keys to be random. \newline
+
+The keys must exhibit certain properties in order to be accepted as random. They should be independent meaning no previously generated keys affect a new key.  Equally likely meaning that  the probability of a 0 or 1 appearing at any point in the key is equal to 1/2. Scalable meaning that if the key is random, then any extracted subsequence is also random. ~(\cite{10.1145/3390525.3390540})Any indication of a dependency or bias within the data would indicate nonrandomness. \newline
+
 \section{Literature Review}
-\subsection{How to Test for randomness/ Analyses done}
-It is important to note that you can not say for certain whether something is random or not, you can only find evidence against non-randomness. It is not possible to give theoretical proof of randomness of a sequence. CITE (55555) Various statistical tests can be performed on the data in an attempt to compare and evaluate the data against a truly random sequence since the outcome when a statistical test is applied to a truly random sequence is known. ~(\cite{98765}).\par
-A challenge when testing for randomness is that there is no agreed upon complete set of statistical tests to deem a sequence random ~(\cite{98765}). There is an infinite number of tests that you could run in order to find the presence or absence of a pattern or bias within the data. The existence of a pattern or bias within the data would indicate that it is non randomness. \par
 
-\subsubsection{Hypothesis testing}
+Introduction
 
-Statistical testing is used to test against a defined null hypothesis (h0). The null hypothesis in this case is that the keys being tested are random. The alternative hypothesis (h1) is that the keys are not random. The challenge here is to determine which of these hypotheses can be accepted CITE 10.1145/3447773 . For each statistical test run on the data, the result accepts or rejects the null hypothesis. \par
+\subsection{How to Test for Randomness}
+
+It is important to note that you can not say for certain whether something is random or not, you can only find evidence against non-randomness. It is not possible to give theoretical proof of randomness of a sequence. ~(\cite{55555}) Various statistical tests can be performed on the data in an attempt to compare and evaluate the data against a truly random sequence since the outcome when a statistical test is applied to a truly random sequence is known. ~(\cite{1195701}). \newline
+
+A challenge when testing for randomness is that there is no agreed upon complete set of statistical tests to deem a sequence random ~(\cite{1195701}). There is an infinite number of tests that you could run in order to find the presence or absence of a pattern or bias within the data. The existence of a pattern or bias within the data would indicate that it is non randomness. \newline
+
+
+\subsubsection{hypothesis Testing}
+
+Statistical testing is used to test against a defined null hypothesis (h0). The null hypothesis in this case is that the keys being tested are random. The alternative hypothesis (h1) is that the keys are not random. The challenge here is to determine which of these hypotheses can be accepted ~(\cite{10.1145/3447773}) . For each statistical test run on the data, the result accepts or rejects the null hypothesis. \newline
 
 The following table shows the possible results on a hypothesis test:
- <table> CITE 98765 \par
+ <table> ~(\cite{1195701}) \newline
 
-The above situations are somewhat unknown but some control can be gained by knowing the probability of each of the error situations. The probability of Error Type 1 is defined as a, the level of significance. CITE 10.1145/3447773. This value is typically 0.01, 0.05 or 0.10. The probability of Error Type 2 is defined as B, referred to as contrast power and is usually used as 1-B. CITE 10.1145/3447773. If the data is truly random, rejecting the null hypothesis, determining that the data is non-random, will occur a small percentage of the time. For example if a is 0.01, it would be expected that 1 sequence in 100 sequences is rejected.  CITE 98765\par
 
-In practice, p-values are used to reject or accept the null hypothesis. In the context of this project, a p-value can be defined as the probability that a key produced is less random than the keys previously tested, given the kind of non-randomness the test is assessing CITE 98765. NEED TO FIX. A p-value equal to 1 indicates that the data is perfectly random while a p-value equal to 0 indicates that the data is completely non random. If the p-value is greater than or equal to a, the null hypothesis is accepted and the data appears to be random. If the p-value is less than a, the null hypothesis is rejected and the data is deemed non random. \par
 
-Maybe K-S stuff here or later on
-TALK ABOUT test suites and what they are, not specific to one
 
-\subsection{Analyses done}
-Intro something like many examples of randomness testing being used on cryptographic techniques/applications. \par
-
-Given that encryption is essential for maintaining data security in cloud computing, ~(\cite{6236554}) performed randomness testing on eight modern encryption techniques, including AES, MARS and DES. They tested on two different platforms, desktop computer and Amazon EC2 Micro Instance. They evaluated the encryption techniques implemented as Pseudo Random Number Generators (PRNGs). They used the NIST Test Suite to perform the randomness testing. With a significance level of 0.01, any p-value less than 0.01 meant that sequence was rejected. They found no strong evidence of any statistical non randomness across the 8 encryption algorithms however some differences were found between them on the two different platforms. \par
-
-Statistical analysis has been run on an enhanced SDEx encryption method based on the SHA-512 hash function ~(\cite{9209663}). Using various tests like frequency, cumulative sums and runs, with a significance level of 0.01, it was found that this encryption algorithm was sufficiently random and passed the tests. \par
+\subsection{Studies on Randomness Testing}
 
 \subsection{Examples of Randomness Failures}
+
+\section{Summary}
