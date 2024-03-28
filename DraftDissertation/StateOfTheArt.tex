@@ -58,18 +58,41 @@ It is important to note that you can not say for certain whether something is ra
 A challenge when testing for randomness is that there is no agreed upon complete set of statistical tests to deem a sequence random ~(\cite{1195701}). There is an infinite number of tests that you could run in order to find the presence or absence of a pattern or bias within the data. The existence of a pattern or bias within the data would indicate that it is non randomness. \newline
 
 
-\subsubsection{hypothesis Testing}
+\subsubsection{Hypothesis Testing}
 
 Statistical testing is used to test against a defined null hypothesis (h0). The null hypothesis in this case is that the keys being tested are random. The alternative hypothesis (h1) is that the keys are not random. The challenge here is to determine which of these hypotheses can be accepted ~(\cite{10.1145/3447773}) . For each statistical test run on the data, the result accepts or rejects the null hypothesis. \newline
 
 The following table shows the possible results on a hypothesis test:
  <table> ~(\cite{1195701}) \newline
 
+The above situations are somewhat unknown but some control can be gained by knowing the probability of each of the error situations. The probability of Error Type 1 is defined as a, the level of significance ~(\cite{10.1145/3447773}). This value is typically 0.01, 0.05 or 0.10. The probability of Error Type 2 is defined as B, referred to as contrast power and is usually used as 1-B. ~(\cite{10.1145/3447773}). If the data is truly random, rejecting the null hypothesis, determining that the data is non-random, will occur a small percentage of the time. For example if a is 0.01, it would be expected that 1 sequence in 100 sequences is rejected ~(\cite{1195701}). \newline
 
+In practice, p-values are used to reject or accept the null hypothesis. In the context of this project, a p-value can be defined as the probability that a key produced is less random than the keys previously tested, given the kind of non-randomness the test is assessing ~(\cite{1195701}). NEED TO FIX. A p-value equal to 1 indicates that the data is perfectly random while a p-value equal to 0 indicates that the data is completely non random. If the p-value is greater than or equal to a, the null hypothesis is accepted and the data appears to be random. If the p-value is less than a, the null hypothesis is rejected and the data is deemed non random. \newline
 
+Maybe K-S stuff here or later on
+TALK ABOUT test suites and what they are, not specific to one
 
 \subsection{Studies on Randomness Testing}
+Intro something like many examples of randomness testing being used on cryptographic techniques/applications. Multiple applications \newline
+
+Given that encryption is essential for maintaining data security in cloud computing, ~(\cite{6236554}) performed randomness testing on eight modern encryption techniques, including AES, MARS and DES. They tested on two different platforms, desktop computer and Amazon EC2 Micro Instance. They evaluated the encryption techniques implemented as Pseudo Random Number Generators (PRNGs). They used the NIST Test Suite to perform the randomness testing. With a significance level of 0.01, any p-value less than 0.01 meant that sequence was rejected. They found no strong evidence of any statistical non randomness across the 8 encryption algorithms however some differences were found between them on the two different platforms. \newline
+
+Statistical analysis has been run on an enhanced SDEx encryption method based on the SHA-512 hash function ~(\cite{9209663}). Using various tests like frequency, cumulative sums and runs, with a significance level of 0.01, it was found that this encryption algorithm was sufficiently random and passed the tests. They concluded that this SDEx method based on the SHA-512 hash function was quicker and equally or more secure than AES with a 256-bit key. They hope to use this method to secure end-to-end encryption for data transfer.\newline
+
+Similarly, statistical tests for randomness have been run on new algorithms, like a proposed stream cipher cryptographic algorithm based on the popular Vernam Cipher ~(\cite{9232553}). The algorithm had a success rate of 99.5 percent across the statistical tests performed on it, which included frequency and longest runs of one's tests. Due to this success, the paper deemed the proposed algorithm effective in producing a random ciphertext sequence and detailed further work of implementing it to help secure medical records. \newline
+
+SHA256 is vulnerable to length extension attacks which involve misusing particular hashes as authentication codes and using them to include extra information. ~(\cite{33333}) introduces a new and improved padding scheme and hashing process for SHA256 to deal with this issue. To verify that the solution is cryptographically secure, statistical tests for randomness are performed on the output of the Message Digest. Tests such as monobit frequency, frequency within a block and runs were carried out on the data. The results validate that the number of ones and zeros are randomly distributed in the final hash value. \newline
+
+Statistical tests were also used to identify encrypted and unencrypted bit sequences ~(\cite{7406118}). Unencrypted bit sequences are less random than encrypted ones. From the SP800-22 rev1a standard, five tests were selected and a significance level of 0.01 was chosen.  If the sequence passes more than 3 of the tests, it was concluded that that sequence was encrypted. Otherwise the sequence was concluded as unencrypted. The results of the experiment were that 89 percent of the time, unencrypted sequences were identified correctly and 99 percent of the time encrypted sequences were identified correctly. \newline
 
 \subsection{Examples of Randomness Failures}
+
+Randomness failures pose a serious threat to cryptographic security ~(\cite{10.1145/3052973.3053040}). The consequences can be severe and there are many examples of real-world incidents. \newline
+
+There are many examples of pseudo random number generators (PRNGs) failing and being guessable. Notably, the Debian Linux vulnerability in 2008 that left cryptographic keys to be guessable. It was caused by the code used to gather entropy, used to seed the PRNG used to create private keys, were removed. This resulted in only 32,768 possible keys meaning the connections made with these keys were insecure. CITE 11111 \newline
+
+In 2015, Juniper Networks announced that there were multiple security vulnerabilities due to unauthorised code in their operating system, for their NetScreen VPN routers, called ScreenOS. CITE 22222 These vulnerabilities were due to Juniper's use of Dual EC (Elliptical Curve) as a PRNG. Dual EC had a weakness that was exploited in the Juniper incident. It was possible for an attacker, who knew the discrete logarithm of an input parameter Q with respect to a generator point, to see a number of consecutive bytes from the output and hence calculate the internal state of the generator. This allowed the attacker to predict all the future output of the generator. They were able to exploit this lack of randomness and passively decrypt VPN traffic.\newline
+
+Bitcoin thefts in 2013 were due to a compromised PRNG used in Android wallets CITE 9999. Applications on Android using Java Cryptography Architecture (JCA) for key generation, signing and generating random numbers were not receiving cryptographically strong values because of an improper initialization of the underlying PRNG SecureRandom on Android devices CITE 991. The predictability of the values being generated by SecureRandom was exploited and attackers were able to guess the private keys used in Bitcoin Wallets and steal the Bitcoins the wallet contained. Again, attackers were able to exploit the lack of randomness.\newline
 
 \section{Summary}
