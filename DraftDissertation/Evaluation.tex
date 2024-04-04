@@ -1,0 +1,9 @@
+\chapter{Evaluation}
+
+\section{Dieharder Results}
+
+Dieharder is designed to push the tests to unambiguous failure CITE Robert G. Brown's General Tools Page (duke.edu) . It contains a number of flag options to alter the parameters of the tests and change their acceptance criteria. The command used to run the Dieharder test suite for this project was:\newline
+
+Dieharder -a -k 2 -Y 1 -f <filename>\newline
+
+The -a flag runs all the tests in the dieharder test suite, as described in  section BLANK. The -k flag is the ks-flag K sminorv thing. The -Y flag is the Xtrategy flag which is used to control the ‘test to failure’ modes. CITE  rgb. This flag is set to 1 to use the ‘resolve ambiguity’ mode. Dieharder can return ‘weak’ as a test result which can be difficult to interpret. Even perfect random numbers will return some ‘weak’ results at some point because the p-values are uniformly distributed and will have a result in the tails of the distribution from time to time. Even if a test returns more than one weak result, this is not conclusive evidence that the data is non-random. The ‘resolve ambiguity’ mode resolves this issue by adding p-samples (in blocks of 100) until the test results in a definitive pass or it proceeds to failure. 

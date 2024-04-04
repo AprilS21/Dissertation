@@ -2,17 +2,90 @@
 
 \section{Challenges}
 \subsection{Review of Test Suites}
-\subsection{Interpretation of Results}
+There are a variety of statistical test suites that have been developed to test for randomness. In this section I will review these test suites in order to choose the appropriate one for this project's purposes. The notable test suites are Dieharder and NIST STS, being the most widely used and therefore most tested. \newline
+
+Dieharder is a random number test suite which was designed to test RNGs used in a variety of applications such as cryptography and computer simulation. CITE rbgwebsite. It consists of 26 tests, extending the original Diehard battery which was created by George Marsaglia in 1995 ~(\cite{10.1145/3447773}). This testing suite is widely used ~(\cite{10.1145/3527157}) ~(\cite{10.1145/3398726}) ~(\cite{10.1145/3624991}) and is well tested. It is designed to be able to change the parameters in order to make failure unambiguous. It incorporates many of the tests in NIST STS. Because Dieharder is open source and encourages users to give feedback, contributions are continuously being made to improve and bug fix the tests. This results in a more reliable and stronger test suite than one that is closed or lacks a good feedback system like NIST STS CITE rgbwebsite. \newline 
+
+NIST STS stands for the National Institute of Standards and Technology (NIST) Statistical Test Suite. It is used to test RNGs  used in applications such as cryptography, modelling and simulation CITE NISTdoc. It contains 15 tests and is widely used ~(\cite{6236554}) ~(\cite{9209663}). These are standardised with its test parameters fixed, reducing its flexibility. \newline
+
+TestU01 CITE source is a test suite that was created by L’Ecuyer and Simard and implemented in C. It is an extensive battery that incorporates some of the tests in Dieharder and NIST STS ~(\cite{10.1145/3447773}). It consists of six test batteries each focusing on testing a different aspect of randomness. It only accepts 32-bit input and interprets it as values with the range of 0 and 1 CITE source. This can lead to inaccuracies in the most-significant bits. \newline
+
+Ent Cite where from is a lesser used test suite created by Walker ~(\cite{10.1145/3447773}). Its purpose is testing for simulation and cryptographic applications. It has two modes, binary and byte, with different statistics being calculated depending on the mode. Although it is fast and simple, the Ent battery has some issues with dependencies between tests, for example the Entropy test and the Chi-squared test ~(\cite{10.1145/3447773}). 
+
+%\subsection{Interpretation of Results}
 
 \section{Methodology}
+
 \subsection{Data Preparation}
 
 The data used in this project was sourced from the Testing Apps for COVID-19 Tracing (TACT) project by Farrell and Leith CITE 2. The TACT project was a study on whether the BLE used in GAEN-based contact tracing applications was effective at identifying users who were in proximity for long enough to be deemed as exposed to covid, if one of the users was later positive for the virus. The project ran from April 2020 until September 2023 and a number of reports were written on the findings CITE some examples. \newline
 
 While the project was ongoing, the TEKs being published in 33 regions, including Ireland, Germany and Brazil, were downloaded hourly. This resulted in a huge amount of data and allowed for insight into the functioning of these apps. The TEKs downloaded were in a large number of zip files. \newline
 
-In order to get the keys in the correct format to test, I first extracted keys from zipped files. Following this, duplicate keys were identified and removed, resulting in a file composed  of only the unique keys. This significantly reduced the data size, from an initial 56GB of all the keys in the zip files, down to 4GB, removing a substantial amount of duplicate keys. The final dataset consists of a total of 129 million unique TEKs in ascii-hex format??, allowing for efficient analysis of the keys.
+In order to get the keys in the correct format to test, first the keys were extracted from the zipped files. Following this, duplicate keys were identified and removed, resulting in a file composed  of only the unique keys. This significantly reduced the data size, from an initial 56GB of all the keys in the zip files, down to 4GB, removing a substantial amount of duplicate keys. The final dataset consists of a total of 129 million unique TEKs in ascii format, allowing for efficient analysis of the keys. For Dieharder, the TEKs were converted in raw binary.
 
 \subsection{Chosen Test Suite}
+
+Dieharder was selected as the test suite for this project as it is widely used and well tested. It also accepts files of numbers as input, which is useful as our data is a file of TEKs. NIST STS was the other potential candidate however it only accepts streams of data being produced by an RNG, which is not applicable in this project. Therefore Dieharder was the appropriate choice to test the TEKs, given its input type, wide range of tests and good reputation. 
+
+\subsubsection{Description of Dieharder Tests}
+
+\begin{itemize}
+\item “Birthdays” test: this test selects m birthdays of a year of n days. It creates a list of the intervals between two birthdays (time between two consecutive events). It expects that the repeated intervals are distributed in a Possion distribution, if the data is random. (cite dieharder man, ~(\cite{10.1145/3447773})). 
+\item Overlapping 5-Permutations Test (OPERM5): this test studies a sequence of one million 32-bit random integers. There are 120 possible permutations of each set of 5 consecutive integers. The number of appearances of each permutation is recorded. Each permutation is expected to appear with equal probability across the sequence.
+\item 32x32 Binary Rank Test:  32x32 matrices are randomly formed from the data. The rank of the matrix is determined. What is rank?? The rank can be a value from 0-32, with infrequent ranks below 29 being pooled with those of rank 29. A chi-squared test is performed on the counts of matrices for ranks 32, 31, 30 and <= 29. This test is performed on 400,000 matrices each time.
+\item 6x8 Binary Rank Test: six random 32-bit integers are taken from the data. A specified byte is chosen and the six bytes, one from each 32-bit integer, create a 6x8 matrix. The rank of the matrix is determined. What is rank?? The rank can be a value from 0-6, with infrequent ranks below 4being pooled with those of rank 4. A chi-squared test is performed on the counts of matrices for ranks 6, 5 and <= 4.  This test is performed on 100,000 matrices each time.
+\item Bitstream Test: in this test, the data is viewed as a stream of bits, a = {ai} and an alphabet with two letters 0 and 1. The stream is considered as successive 20 letter words that overlap. For example, the first word would be bits a1-a20 and the second word would be bits a2-a21. The test counts the number of missing 20-letter words in a string of 2power21 overlapping 20-letter words. Given that there are 2power20  possible overlapping 20-letter words, the number of missing words j in a 2power21+19 letter (bit) string is expected to be (nearly) normally distributed with a mean of 141,909 and sigma of 428. The z-score ?? This test is repeated 20 times each time. 
+\item Overlapping Pairs Sparse Occupance (OPSO): This test considers 2 letter words from an alphabet containing 1024 letters. Each letter is found by a specified 10 bits from a 32-bit integer in the data. 2power21 overlapping 2-letter words from 2power21+1 “keystrokes” are generated by the test and it counts the number of 2-letter words that do not appear in the data. These counts are expected to be (nearly) a normal distribution with mean of 141,900 and sigma 290. Therefore the number of missing words minus the mean divided by sigma should be a standard normal variable. This test extracts 32 bits at a time from the data file and uses a specific 10 bits, the file is then restarted and the next 10 bits are taken and so on.
+\item Overlapping Quadruples Sparse Occupancy (OQSO): This test is similar to OPSO but takes 4-letter words from an alphabet of 32 letters.  Each letter is determined by a specific string of 5 bits from the data, which is assumed to contains 32-bit random numbers. The test calculates the average number of missing words in a sequence of 2power21 four-letter words, which is equivalent to 2power21+3 "keystrokes". The average number of missing words is 141909, with a standard deviation (sigma) of 295. (The average is calculated based on theory, while the standard deviation is determined through extensive simulation?).
+\item DNA Test: this test considers an alphabet made up of four letters: C, G, A, and T. These letters are determined by two designated bits in the sequence being tested. The test looks at words that are 10 letters long, like OPSO and OQSO tests, which means there are 2power20 possible words. For a string of 2power21 overlapping 10-letter words (which equals 2power21+9 "keystrokes"), the average number of missing words is 141909. The standard deviation, sigma, is 339, (which was calculated through simulation. However, for OPSO, the true standard deviation is 290, determined directly rather than through simulation.?)
+\item Count the 1s (stream): This test considers the data being tested as a stream of bytes, with four bytes making up each 32-bit integer. Each byte can contain anywhere from 0 to 8 occurrences of the number 1, with different probabilities for each count. This stream of bytes is considered as a series of overlapping 5-letter words. Each "letter" in these words is determined by the number of 1s in a byte: 0, 1, or 2 gives A, 3 gives B, 4 gives C, 5 gives D, and 6, 7, or 8 gives E. (monkey at a typewriter hitting five keys, each with its own probability of being pressed?). There are 5power5 possible 5-letter words, the count of how often each word appears in a string of 256,000 overlapping 5-letter words is calculated. The quadratic form in the weak inverse of the covariance matrix of the cell counts provides a X2 test. The test returns two p-values for 5-letter and 4-letter cell counts.
+\item Count the 1s Test (byte): The test considers the data being tested as a series of 32-bit integers. From each integer, specific byte is selected, the leftmost byte (bits 1 to 8). This byte can have anywhere from 0 to 8 instances of the number 1, with probabilities of 1, 8, 28, 56, 70, 56, 28, 8, and 1 out of 256. These specified bytes are taken from consecutive integers and turned into a string of overlapping 5-letter words. In these words, each "letter" is determined by how many times the number 1 appears in that byte: 0, 1, or 2 gives A, 3 gives B, 4 gives C, 5 gives D, and 6, 7, or 8 gives E. (monkey at a typewriter hitting five keys, each with its own chances of being pressed: 37, 56, 70, 56, and 37 out of 256?). There are 5power5 possible 5-letter words, and from a set of 256,000 overlapping 5-letter words, how often each word appears is counted. (The quadratic form in the weak inverse of the covariance matrix of the cell counts provides a chisquare test::  Q5-Q4, the difference of the naive Pearson  sums of (OBS-EXP)power2/EXP on counts for 5-and 4-letter cell counts?)
+\item Parking Lot Test: This test examines how attempts to randomly park a square car of length 1 on a 100x100 parking lot without crashing are distributed. The number of attempts (n) is plotted against the number of attempts that didn't "crash" because the car squares overlapped (k). This is compared to what would be expected from a perfectly random set of parking coordinates. The results are compared to when n=12,000, where k should average 3523 with a standard deviation of 21.9. This average is very close to being normally distributed. The formula (k - 3523) / 21.9 is used to get a standard normal variable. Converting this to a uniform p-value, it is used as input for a KS test with a default of 100 samples.
+\item Minimum Distance (2d Circle) Test: 
+\item 3d Sphere (Minimum Distance) Test:
+\item Squeeze Test:
+\item Sums Test (Broken)
+\item Runs Test:
+\item Craps Test:
+\item Greatest Common Divisor Marsaglia and Tsang Test:
+\item Monobit Test (STS):
+\item Runs Test (STS):
+\item Serial Test (STS):
+\item Bit Distribution Test:
+\item Generalised Minimum Distance Test:
+\item Permutations Test:
+\item Lagged Sums Test:
+\item Kolmongorov-Smirnov Test Test:
+\item Byte Distribution Test:
+\item Discrete Cosine Transform (DCT) (Frequency Analysis) Test:
+\item Fill Tree Test:
+\item Fill Tree 2 Test:
+\item Monobit 2 Test:
+\end{itemize}
 \subsection{Other Tests}
+
+Other tests to supplement the Dieharder test suite were implemented, these include: chi-squared test, spectral test, lag plot and plot of counts.\newline
+
+\subsubsection{Lag Plot}
+A lag plot is a graphical test for randomness, it displays any patterns or relationships in the data. Random data should not have any identifiable structure in the lag plot, a structure in the lag plot indicates that the data is not random CITE 1.3.3.15. Lag Plot (nist.gov). A lag plot involves plotting a set of the data against another set of the data that occurs later. For example, given a data set Y1, Y2 ..., Yn, Y2 and Y7 have lag 5 since 7 - 2 = 5. Lag plots can be generated for any arbitrary lag CITE 1.3.3.15. Lag Plot (nist.gov) . A plot of lag 1 would be a plot of Yi against Yi-1. PICTURES of examples from NIST of random v non random
+
+\subsubsection{Chi-Squared Test}
+The chi-squared test for randomness iterates through the list of TEKs, counting the occurrences of '0' and '1' in each key. The observed frequencies are calculated based on these counts. Assuming equal probability for '0' and '1', the expected frequencies are calculated. The chi-squared statistic is computed and the corresponding p-value for the observed and expected frequencies. The chi-squared statistic, p-value, and expected frequencies are returned. This test helps to quantify the degree of randomness in the TEK dataset, providing valuable insights into its distribution and potential biases. get cites
+
+\subsubsection{Spectral Test}
+\subsubsection{Plot of Counts}
+\subsubsection{Hilbert Curve}
+REWRITE and cite: the Hilbert curve can be used to visually represent randomness or non-randomness in data. The Hilbert curve is a space-filling curve that can map one-dimensional data onto a two-dimensional space in a way that preserves locality: nearby points in the original data remain close to each other in the curve's representation.
+
+When data points are randomly distributed, the resulting Hilbert curve will exhibit a relatively uniform distribution throughout its space-filling path. This means that nearby points in the original dataset will likely remain close to each other in the curve, creating a visually uniform pattern.
+
+Conversely, if the data exhibits some form of non-random structure or clustering, the resulting Hilbert curve will reflect this by exhibiting areas of higher density or clustering along certain portions of the curve. In other words, points that are close to each other in the original dataset may end up far apart or clustered together in the Hilbert curve representation.
+
+By visualizing data using the Hilbert curve, one can quickly discern patterns or lack thereof, providing insights into the randomness or non-randomness of the dataset. However, it's important to note that the Hilbert curve visualization is not a formal statistical test for randomness but rather a tool for qualitative assessment. Formal statistical tests, such as the chi-squared test or others, are typically used for quantitative assessments of randomness.
+
 \subsection{Random Dataset}
+
+A dataset containing random numbers was sourced from CITE Random.org. This website generates true random numbers from atmospheric noise. These numbers are better than pseudo random numbers as they do not require a seed and are truly random. This service was created in 1998 by Dr Mads Haahr in Trinity College Dublin and is now run by Randomness and Integrity Services Ltd. \newline
+
+The same randomness testing is applied to this random dataset as the TEKs. This allows for a baseline to compare the results to as well as validating the tests.  The dataset contains 129 million 128-bit numbers, equal to the set of TEKs.
