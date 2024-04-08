@@ -15,7 +15,7 @@ x=${ARCHIVE:="$DATADIR/all-zips"}
 x=${DAILIES:="$DATADIR/dailies"}
 x=${DAILIES2:="$DATADIR/dailies2"}
 
-TEK_LIST="./tek_list.py"
+TEK_LIST="$TOP/tek_list.py"
 
 CURL="/usr/bin/curl -s"
 UNZIP="/usr/bin/unzip"
@@ -28,9 +28,9 @@ NOW=$(whenisitagain)
 
 howmany() { echo $#; }
 
-tmpf=`mktemp /mnt/d/Dissertation/data_dest/teksXXXX`
+tmpf=`mktemp /tmp/teksXXXX`
 
-list="/mnt/d/Dissertation/data_dest/all-zips/*.zip"
+list="$ARCHIVE/*.zip"
 count=0
 goodcount=0
 badcount=0
