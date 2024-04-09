@@ -11,7 +11,7 @@ x=${HOME:='/home/stephen'}
 x=${DOCROOT:='/var/www/tact/tek-counts/'}
 x=${TOP:="$HOME/code/tek_transparency"}
 x=${DATADIR:="$TOP/data"}
-x=${ARCHIVE:="$DATADIR/all-zips"}
+x=${ARCHIVE:="/home/asheeran/data_dest/all-zips"}
 x=${DAILIES:="$DATADIR/dailies"}
 x=${DAILIES2:="$DATADIR/dailies2"}
 
@@ -28,9 +28,9 @@ NOW=$(whenisitagain)
 
 howmany() { echo $#; }
 
-tmpf=`mktemp /mnt/d/Dissertation/data_dest/teksXXXX`
+tmpf=`mktemp /tmp/teksXXXX`
 
-list="/mnt/d/Dissertation/data_dest/all-zips/*.zip"
+list="$ARCHIVE/*.zip"
 count=0
 goodcount=0
 badcount=0
