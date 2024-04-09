@@ -15,7 +15,7 @@ x=${ARCHIVE:="/home/asheeran/data_dest/all-zips"}
 x=${DAILIES:="$DATADIR/dailies"}
 x=${DAILIES2:="$DATADIR/dailies2"}
 
-TEK_LIST="./tek_list.py"
+TEK_LIST="$TOP/tek_list.py"
 
 CURL="/usr/bin/curl -s"
 UNZIP="/usr/bin/unzip"
