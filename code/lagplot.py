@@ -1,8 +1,5 @@
 import sys
-import pandas as pd 
-import numpy as np 
 import matplotlib.pyplot as plt 
-from scipy import stats as sc
 
 def main(path):
     """
@@ -14,26 +11,36 @@ def main(path):
     Returns:
     saves figure as lagplot.png
     """
-    binary_keys = []
-
+    lag = 1
     with open(path, 'r') as file:
-        # file in binary, strings of binary
-        for line in file:
+        # Initialize variables to store current and previous values
+        prev_value = None
+        prev_index = None
+        
+        # Iterate over each line in the file
+        for line_count, line in enumerate(file, start=1):
             line = line.strip()
-            if line:
-                binary_keys.append(int(line))
+            if not line:
+                continue
+            value = int(line)
+            
+            # Plot lag plot
+            if prev_value is not None:
+                plt.scatter(prev_value, value, color='blue', marker='o', alpha=0.5)
+            prev_value = value
 
+    # Add labels and title
+    plt.xlabel(f'x(t)')
+    plt.ylabel(f'x(t + {lag})')
+    plt.title(f'Lag Plot (lag={lag})')
 
-    data_series = pd.Series(binary_keys)
-    #print(data_series.head()) 
-    data=data_series.reset_index()
-    #print(data.head()) 
-    fig, ax = plt.subplots(1, 2, figsize=(12, 7)) 
-    ax[0].plot(data['index'],data[0])
-    pd.plotting.lag_plot(data,lag=1,ax =ax[1]) 
-    plt.savefig('./lagplot.png') 
+    # Save the plot
+    plt.savefig('./lagplot.png')
+    plt.close()
 
 if __name__ == "__main__":
-    #path = "//wsl.localhost//Ubuntu//tmp//chosenBitsjmqeohbo.tekBits"
-    path = str(sys.argv[1])
+    if len(sys.argv) != 2:
+        print("Usage: python lagplot.py input_file_path")
+        sys.exit(1)
+    path = sys.argv[1]
     main(path)

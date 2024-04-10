@@ -20,22 +20,21 @@ def plot_hilbert_curve(coordinates):
     plt.gca().invert_yaxis()  # Invert y-axis
     plt.savefig('./hilbertCurve.png')
 
-def generate_coordinates(hex_keys):
-    for index, hex_key in enumerate(hex_keys):
-        int_value = hex_to_int(hex_key)
-        yield hilbert_curve.point_from_distance(index)
-
-def main(path):
-    hex_keys = []
-    line_count = 0
-    with open(path, 'r') as file:
-        for line in file:
-            line_count += 1
+def generate_coordinates(file_path):
+    with open(file_path, 'r') as file:
+        for line_count, line in enumerate(file, start=1):
             line = line.strip()
-            if len(line) != 33:
+            if len(line) != 32:
                 print(f"Skipping bad length line at line {line_count}: {line}", file=sys.stderr)
                 continue
-            hex_keys.append(line)
+            int_value = hex_to_int(line)
+            yield int_value
+
+def main(path):
+    line_count = 0
+    with open(path, 'r') as file:
+        for _ in file:
+            line_count += 1
 
     print("Total number of keys:", line_count)
 
@@ -43,12 +42,12 @@ def main(path):
     p = int(np.ceil(np.log2(side_length)))
     hilbert_curve = HilbertCurve(p, 2)
 
-    coordinates = generate_coordinates(hex_keys)
+    coordinates = (hilbert_curve.point_from_distance(i) for i in generate_coordinates(path))
     plot_hilbert_curve(coordinates)
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python script.py input_file_path", file=sys.stderr)
+        print("Usage: python hilbertCurve.py input_file_path")
         sys.exit(1)
     path = sys.argv[1]
     main(path)
