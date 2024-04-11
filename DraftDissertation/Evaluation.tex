@@ -8,285 +8,131 @@ Dieharder -a -k 2 -Y 1 -f <filename>\newline
 
 The -a flag runs all the tests in the dieharder test suite, as described in  section BLANK. The -k flag is the ks-flag K sminorv thing. The -Y flag is the Xtrategy flag which is used to control the ‘test to failure’ modes. CITE  rgb. This flag is set to 1 to use the ‘resolve ambiguity’ mode. Dieharder can return ‘weak’ as a test result which can be difficult to interpret. Even perfect random numbers will return some ‘weak’ results at some point because the p-values are uniformly distributed and will have a result in the tails of the distribution from time to time. Even if a test returns more than one weak result, this is not conclusive evidence that the data is non-random. The ‘resolve ambiguity’ mode resolves this issue by adding p-samples (in blocks of 100) until the test results in a definitive pass, weak or it proceeds to failure. \newline
 
-Table for unshuffled teks
+\subsection{TEKs Results}
+Table for teks
 \begin{longtable}{cccccc}
 \toprule
 Test Name & $n$ & $N$ & $d$ & $p$-value & Result \\
 \midrule
-\endhead
-diehard\_birthday & 0 & 100 & 100 & 0.00000000 & FAILED \\
-diehard\_operm5 & 0 & 1000000 & 100 & 0.00000000 & FAILED \\
-diehard\_rank\_32x32 & 0 & 40000 & 100 & 0.00000000 & FAILED \\
-diehard\_rank\_6x8 & 0 & 100000 & 100 & 0.00000000 & FAILED \\
-diehard\_bitstream & 0 & 2097152 & 100 & 0.00000000 & FAILED \\
-diehard\_opso & 0 & 2097152 & 100 & 0.00000000 & FAILED \\
-diehard\_oqso & 0 & 2097152 & 100 & 0.00000000 & FAILED \\
-diehard\_dna & 0 & 2097152 & 100 & 0.00000000 & FAILED \\
-diehard\_count\_1s\_str & 0 & 256000 & 100 & 0.00000000 & FAILED \\
-diehard\_count\_1s\_byt & 0 & 256000 & 100 & 0.00000000 & FAILED \\
-diehard\_parking\_lot & 0 & 12000 & 100 & 0.07004519 & PASSED \\
-diehard\_2dsphere & 2 & 8000 & 100 & 0.78110272 & PASSED \\
-diehard\_3dsphere & 3 & 4000 & 100 & 0.91053514 & PASSED \\
-diehard\_squeeze & 0 & 100000 & 100 & 0.00000000 & FAILED \\
-diehard\_sums & 0 & 100 & 100 & 0.00078154 & WEAK \\
-diehard\_sums & 0 & 100 & 200 & 0.00000003 & FAILED \\
-diehard\_runs & 0 & 100000 & 100 & 0.00000000 & FAILED \\
-diehard\_runs & 0 & 100000 & 100 & 0.00000000 & FAILED \\
-diehard\_craps & 0 & 200000 & 100 & 0.00000000 & FAILED \\
-diehard\_craps & 0 & 200000 & 100 & 0.00000000 & FAILED \\
+diehard\_birthdays & 0 & 100 & 100 & 0.77299183 & PASSED \\
+diehard\_operm5 & 0 & 1000000 & 100 & 0.13537941 & PASSED \\
+diehard\_rank\_32x32 & 0 & 40000 & 100 & 0.07349656 & PASSED \\
+diehard\_rank\_6x8 & 0 & 100000 & 100 & 0.14027053 & PASSED \\
+diehard\_bitstream & 0 & 2097152 & 100 & 0.74598222 & PASSED \\
+diehard\_opso & 0 & 2097152 & 100 & 0.09336658 & PASSED \\
+diehard\_oqso & 0 & 2097152 & 100 & 0.85904097 & PASSED \\
+diehard\_dna & 0 & 2097152 & 100 & 0.97496850 & PASSED \\
+diehard\_count\_1s\_str & 0 & 256000 & 100 & 0.94811453 & PASSED \\
+diehard\_count\_1s\_byt & 0 & 256000 & 100 & 0.63133151 & PASSED \\
+diehard\_parking\_lot & 0 & 12000 & 100 & 0.48712953 & PASSED \\
+diehard\_2dsphere & 2 & 8000 & 100 & 0.61476303 & PASSED \\
+diehard\_3dsphere & 3 & 4000 & 100 & 0.62134392 & PASSED \\
+diehard\_squeeze & 0 & 100000 & 100 & 0.46769179 & PASSED \\
+diehard\_sums & 0 & 100 & 100 & 0.04953850 & PASSED \\
+diehard\_runs & 0 & 100000 & 100 & 0.19288118 & PASSED \\
+diehard\_runs & 0 & 100000 & 100 & 0.54574717 & PASSED \\
+diehard\_craps & 0 & 200000 & 100 & 0.90596413 & PASSED \\
+diehard\_craps & 0 & 200000 & 100 & 0.18959393 & PASSED \\
 marsaglia\_tsang\_gcd & 0 & 10000000 & 100 & 0.00000000 & FAILED \\
-marsaglia\_tsang\_gcd & 0 & 10000000 & 100 & 0.00000000 & FAILED \\
-sts\_monobit & 1 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_runs & 2 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 1 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 2 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 3 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 3 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 4 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 4 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 5 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 5 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 6 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 6 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 7 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 7 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 8 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 8 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 9 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 9 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 10 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 10 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 11 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 11 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 12 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 12 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 13 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 13 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 14 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 14 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 15 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 15 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 16 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 16 & 100000 & 100 & 0.00000000 & FAILED \\
-rgb\_bitdist & 1 & 100000 & 100 & 0.00000000 & FAILED \\
-rgb\_bitdist & 2 & 100000 & 100 & 0.00000000 & FAILED \\
-rgb\_bitdist & 3 & 100000 & 100 & 0.00000000 & FAILED \\
-rgb\_bitdist & 4 & 100000 & 100 & 0.00000000 & FAILED \\
-rgb\_bitdist & 5 & 100000 & 100 & 0.00000000 & FAILED \\
-rgb\_bitdist & 6 & 100000 & 100 & 0.00000000 & FAILED \\
-rgb\_bitdist & 7 & 100000 & 100 & 0.00000000 & FAILED \\
-rgb\_bitdist & 8 & 100000 & 100 & 0.00000000 & FAILED \\
-rgb\_bitdist & 9 & 100000 & 100 & 0.00000000 & FAILED \\
-rgb\_bitdist & 10 & 100000 & 100 & 0.00000000 & FAILED \\
-rgb\_bitdist & 11 & 100000 & 100 & 0.00000000 & FAILED \\
-rgb\_bitdist & 12 & 100000 & 100 & 0.00000000 & FAILED \\
-rgb\_minimum\_distance & 2 & 10000 & 1000 & 0.00000000 & FAILED \\
-rgb\_minimum\_distance & 3 & 10000 & 1000 & 0.00000000 & FAILED \\
-rgb\_minimum\_distance & 4 & 10000 & 1000 & 0.00000000 & FAILED \\
-rgb\_minimum\_distance & 5 & 10000 & 1000 & 0.00000000 & FAILED \\
-rgb\_permutations & 2 & 100000 & 100 & 0.37507706 & PASSED \\
-rgb\_permutations & 3 & 100000 & 100 & 0.84299763 & PASSED \\
-rgb\_permutations & 4 & 100000 & 100 & 0.66095653 & PASSED \\
-rgb\_permutations & 5 & 100000 & 100 & 0.00000000 & FAILED \\
-rgb\_lagged\_sum & 0 & 1000000 & 100 & 0.12098135 & PASSED \\
-rgb\_lagged\_sum & 1 & 1000000 & 100 & 0.26596601 & PASSED \\
-rgb\_lagged\_sum & 2 & 1000000 & 100 & 0.04319808 & PASSED \\
-rgb\_lagged\_sum & 3 & 1000000 & 100 & 0.89932598 & PASSED \\
-rgb\_lagged\_sum & 4 & 1000000 & 100 & 0.26459166 & PASSED \\
-rgb\_lagged\_sum & 5 & 1000000 & 100 & 0.38264722 & PASSED \\
-rgb\_lagged\_sum & 6 & 1000000 & 100 & 0.37531870 & PASSED \\
-rgb\_lagged\_sum & 7 & 1000000 & 100 & 0.73835317 & PASSED \\
-rgb\_lagged\_sum & 8 & 1000000 & 100 & 0.13489564 & PASSED \\
-rgb\_lagged\_sum & 9 & 1000000 & 100 & 0.26378705 & PASSED \\
-rgb\_lagged\_sum & 10 & 1000000 & 100 & 0.11981681 & PASSED \\
-rgb\_lagged\_sum & 11 & 1000000 & 100 & 0.97446038 & PASSED \\
-rgb\_lagged\_sum & 12 & 1000000 & 100 & 0.31259422 & PASSED \\
-rgb\_lagged\_sum & 13 & 1000000 & 100 & 0.12868005 & PASSED \\
-rgb\_lagged\_sum & 14 & 1000000 & 100 & 0.00131314 & WEAK \\
-rgb\_lagged\_sum & 14 & 1000000 & 200 & 0.00002215 & WEAK \\
-rgb\_lagged\_sum & 14 & 1000000 & 300 & 0.00008168 & WEAK \\
-rgb\_lagged\_sum & 14 & 1000000 & 400 & 0.00000036 & FAILED \\
-rgb\_lagged\_sum & 15 & 1000000 & 100 & 0.95857366 & PASSED \\
-rgb\_lagged\_sum & 16 & 1000000 & 100 & 0.00178729 & WEAK \\
-rgb\_lagged\_sum & 16 & 1000000 & 200 & 0.00291140 & WEAK \\
-rgb\_lagged\_sum & 16 & 1000000 & 300 & 0.00021192 & WEAK \\
-rgb\_lagged\_sum & 16 & 1000000 & 400 & 0.00000486 & WEAK \\
-rgb\_lagged\_sum & 16 & 1000000 & 500 & 0.00000133 & WEAK \\
-rgb\_lagged\_sum & 16 & 1000000 & 600 & 0.00000090 & FAILED \\
-rgb\_lagged\_sum & 17 & 1000000 & 100 & 0.01294323 & PASSED \\
-rgb\_lagged\_sum & 18 & 1000000 & 100 & 0.19972489 & PASSED \\
-rgb\_lagged\_sum & 19 & 1000000 & 100 & 0.20227709 & PASSED \\
-rgb\_lagged\_sum & 20 & 1000000 & 100 & 0.00867910 & PASSED \\
-rgb\_lagged\_sum & 21 & 1000000 & 100 & 0.00130641 & WEAK \\
-rgb\_lagged\_sum & 21 & 1000000 & 200 & 0.00002850 & WEAK \\
-rgb\_lagged\_sum & 21 & 1000000 & 300 & 0.00000042 & FAILED \\
-rgb\_lagged\_sum & 22 & 1000000 & 100 & 0.14586165 & PASSED \\
-rgb\_lagged\_sum & 23 & 1000000 & 100 & 0.80324858 & PASSED \\
-rgb\_lagged\_sum & 24 & 1000000 & 100 & 0.00007671 & WEAK \\
-rgb\_lagged\_sum & 24 & 1000000 & 200 & 0.00002730 & WEAK \\
-rgb\_lagged\_sum & 24 & 1000000 & 300 & 0.00000208 & WEAK \\
-rgb\_lagged\_sum & 24 & 1000000 & 400 & 0.00000061 & FAILED \\
-rgb\_lagged\_sum & 25 & 1000000 & 100 & 0.00404638 & WEAK \\
-rgb\_lagged\_sum & 25 & 1000000 & 200 & 0.00000243 & WEAK \\
-rgb\_lagged\_sum & 25 & 1000000 & 300 & 0.00000005 & FAILED \\
-rgb\_lagged\_sum & 26 & 1000000 & 100 & 0.03878522 & PASSED \\
-rgb\_lagged\_sum & 27 & 1000000 & 100 & 0.68616225 & PASSED \\
-rgb\_lagged\_sum & 28 & 1000000 & 100 & 0.07576872 & PASSED \\
-rgb\_lagged\_sum & 29 & 1000000 & 100 & 0.00152326 & WEAK \\
-rgb\_lagged\_sum & 29 & 1000000 & 200 & 0.00000487 & WEAK \\
-rgb\_lagged\_sum & 29 & 1000000 & 300 & 0.00000001 & FAILED \\
-rgb\_lagged\_sum & 30 & 1000000 & 100 & 0.00119525 & WEAK \\
-rgb\_lagged\_sum & 30 & 1000000 & 200 & 0.00022464 & WEAK \\
-rgb\_lagged\_sum & 30 & 1000000 & 300 & 0.00002248 & WEAK \\
-rgb\_lagged\_sum & 30 & 1000000 & 400 & 0.00000050 & FAILED \\
-rgb\_lagged\_sum & 31 & 1000000 & 100 & 0.62589930 & PASSED \\
-rgb\_lagged\_sum & 32 & 1000000 & 100 & 0.02588554 & PASSED \\
-rgb\_kstest\_test & 0 & 10000 & 1000 & 0.47351180 & PASSED \\
-dab\_bytedistrib & 0 & 51200000 & 1 & 0.00000000 & FAILED \\
-dab\_dct & 256 & 50000 & 1 & 0.00000000 & FAILED \\
-dab\_filltree & 32 & 15000000 & 1 & 0.00000000 & FAILED \\
-dab\_filltree & 32 & 15000000 & 1 & 0.00000000 & FAILED \\
-dab\_filltree2 & 0 & 5000000 & 1 & 0.00000000 & FAILED \\
-dab\_filltree2 & 1 & 5000000 & 1 & 0.00000000 & FAILED \\
-dab\_monobit2 & 12 & 65000000 & 1 & 1.00000000 & FAILED \\
+marsaglia\_tsang\_gcd & 0 & 10000000 & 100 & 0.10568644 & PASSED \\
+sts\_monobit & 1 & 100000 & 100 & 0.47976313 & PASSED \\
+sts\_runs & 2 & 100000 & 100 & 0.66676814 & PASSED \\
+sts\_serial & 1 & 100000 & 100 & 0.78623968 & PASSED \\
+sts\_serial & 2 & 100000 & 100 & 0.44645002 & PASSED \\
+sts\_serial & 3 & 100000 & 100 & 0.43604239 & PASSED \\
+sts\_serial & 3 & 100000 & 100 & 0.38891073 & PASSED \\
+sts\_serial & 4 & 100000 & 100 & 0.08927189 & PASSED \\
+sts\_serial & 4 & 100000 & 100 & 0.45728138 & PASSED \\
+sts\_serial & 5 & 100000 & 100 & 0.45061005 & PASSED \\
+sts\_serial & 5 & 100000 & 100 & 0.94187841 & PASSED \\
+sts\_serial & 6 & 100000 & 100 & 0.74013647 & PASSED \\
+sts\_serial & 6 & 100000 & 100 & 0.96963845 & PASSED \\
+sts\_serial & 7 & 100000 & 100 & 0.16445098 & PASSED \\
+sts\_serial & 7 & 100000 & 100 & 0.39368207 & PASSED \\
+sts\_serial & 8 & 100000 & 100 & 0.85303740 & PASSED \\
+sts\_serial & 8 & 100000 & 100 & 0.61403945 & PASSED \\
+sts\_serial & 9 & 100000 & 100 & 0.82207775 & PASSED \\
+sts\_serial & 9 & 100000 & 100 & 0.84023286 & PASSED \\
+sts\_serial & 10 & 100000 & 100 & 0.53878704 & PASSED \\
+sts\_serial & 10 & 100000 & 100 & 0.50958419 & PASSED \\
+sts\_serial & 11 & 100000 & 100 & 0.76365987 & PASSED \\
+sts\_serial & 11 & 100000 & 100 & 0.99724672 & WEAK \\
+sts\_serial & 12 & 100000 & 100 & 0.10309010 & PASSED \\
+sts\_serial & 12 & 100000 & 100 & 0.09075148 & PASSED \\
+sts\_serial & 13 & 100000 & 100 & 0.14193034 & PASSED \\
+sts\_serial & 13 & 100000 & 100 & 0.39178650 & PASSED \\
+sts\_serial & 14 & 100000 & 100 & 0.55235953 & PASSED \\
+sts\_serial & 14 & 100000 & 100 & 0.93067829 & PASSED \\
+sts\_serial & 15 & 100000 & 100 & 0.87023615 & PASSED \\
+sts\_serial & 15 & 100000 & 100 & 0.41580060 & PASSED \\
+sts\_serial & 16 & 100000 & 100 & 0.30963945 & PASSED \\
+sts\_serial & 16 & 100000 & 100 & 0.24160223 & PASSED \\
+sts\_serial & 1 & 100000 & 200 & 0.79166956 & PASSED \\
+sts\_serial & 2 & 100000 & 200 & 0.83175687 & PASSED \\
+sts\_serial & 3 & 100000 & 200 & 0.06738309 & PASSED \\
+sts\_serial & 3 & 100000 & 200 & 0.57296112 & PASSED \\
+sts\_serial & 4 & 100000 & 200 & 0.24628902 & PASSED \\
+sts\_serial & 4 & 100000 & 200 & 0.44915922 & PASSED \\
+sts\_serial & 5 & 100000 & 200 & 0.51469111 & PASSED \\
+sts\_serial & 5 & 100000 & 200 & 0.99781703 & WEAK \\
+sts\_serial & 6 & 100000 & 200 & 0.32098879 & PASSED \\
+sts\_serial & 6 & 100000 & 200 & 0.81131383 & PASSED \\
+sts\_serial & 7 & 100000 & 200 & 0.43377863 & PASSED \\
+sts\_serial & 7 & 100000 & 200 & 0.83148284 & PASSED \\
+sts\_serial & 8 & 100000 & 200 & 0.93537243 & PASSED \\
+sts\_serial & 8 & 100000 & 200 & 0.42799745 & PASSED \\
+sts\_serial & 9 & 100000 & 200 & 0.93092228 & PASSED \\
+sts\_serial & 9 & 100000 & 200 & 0.97411788 & PASSED \\
+sts\_serial & 10 & 100000 & 200 & 0.74041098 & PASSED \\
+sts\_serial & 10 & 100000 & 200 & 0.57488851 & PASSED \\
+sts\_serial & 11 & 100000 & 200 & 0.94741770 & PASSED \\
+sts\_serial & 11 & 100000 & 200 & 0.97652870 & PASSED \\
+sts\_serial & 12 & 100000 & 200 & 0.36943161 & PASSED \\
+sts\_serial & 12 & 100000 & 200 & 0.11761168 & PASSED \\
+sts\_serial & 13 & 100000 & 200 & 0.09077406 & PASSED \\
+sts\_serial & 13 & 100000 & 200 & 0.65800529 & PASSED \\
+sts\_serial & 14 & 100000 & 200 & 0.52298457 & PASSED \\
+sts\_serial & 14 & 100000 & 200 & 0.80247788 & PASSED \\
+sts\_serial & 15 & 100000 & 200 & 0.15737979 & PASSED \\
+sts\_serial & 15 & 100000 & 200 & 0.31245746 & PASSED \\
+sts\_serial & 16 & 100000 & 200 & 0.97689150 & PASSED \\
+sts\_serial & 16 & 100000 & 200 & 0.35214966 & PASSED \\
+sts\_serial & 1 & 100000 & 300 & 0.24837866 & PASSED \\
+sts\_serial & 2 & 100000 & 300 & 0.19541588 & PASSED \\
+sts\_serial & 3 & 100000 & 300 & 0.05997633 & PASSED \\
+sts\_serial & 3 & 100000 & 300 & 0.38771638 & PASSED \\
+sts\_serial & 4 & 100000 & 300 & 0.11894101 & PASSED \\
+sts\_serial & 4 & 100000 & 300 & 0.47096021 & PASSED \\
+sts\_serial & 5 & 100000 & 300 & 0.72546069 & PASSED \\
+sts\_serial & 5 & 100000 & 300 & 0.49034451 & PASSED \\
+sts\_serial & 6 & 100000 & 300 & 0.22938997 & PASSED \\
+sts\_serial & 6 & 100000 & 300 & 0.49108463 & PASSED \\
+sts\_serial & 7 & 100000 & 300 & 0.24917545 & PASSED \\
+sts\_serial & 7 & 100000 & 300 & 0.52041708 & PASSED \\
+sts\_serial & 8 & 100000 & 300 & 0.91268041 & PASSED \\
+sts\_serial & 8 & 100000 & 300 & 0.37811375 & PASSED \\
+sts\_serial & 9 & 100000 & 300 & 0.72626048 & PASSED \\
+sts\_serial & 9 & 100000 & 300 & 0.96132189 & PASSED \\
+sts\_serial & 10 & 100000 & 300 & 0.28380339 & PASSED \\
+sts\_serial & 10 & 100000 & 300 & 0.18689871 & PASSED \\
+sts\_serial & 11 & 100000 & 300 & 0.85779874 & PASSED \\
+sts\_serial & 11 & 100000 & 300 & 0.87697717 & PASSED \\
+sts\_serial & 12 & 100000 & 300 & 0.25145027 & PASSED \\
+sts\_serial & 12 & 100000 & 300 & 0.14601927 & PASSED \\
+sts\_serial & 13 & 100000 & 300 & 0.19917059 & PASSED \\
+sts\_serial & 13 & 100000 & 300 & 0.41143466 & PASSED \\
+sts\_serial & 14 & 100000 & 300 & 0.58145201 & PASSED \\
+sts\_serial & 14 & 100000 & 300 & 0.68687169 & PASSED \\
+sts\_serial & 15 & 100000 & 300 & 0.79775271 & PASSED \\
+sts\_serial & 15 & 100000 & 300 & 0.96087417 & PASSED \\
+sts\_serial & 16 & 100000 & 300 & 0.88531337 & PASSED \\
+sts\_serial & 16 & 100000 & 300 & 0.81499315 & PASSED \\
 \bottomrule
+\caption{Dieharder Results of TEKS.}
+\label{table}
 \end{longtable}
 
-Table for shuffled teks
-
-\begin{longtable}{cccccc}
-\toprule
-Test Name & $n$ & $N$ & $d$ & $p$-value & Result \\
-\midrule
-\endhead
-diehard\_birthday & 0 & 100 & 100 & 0.00000000 & FAILED \\
-diehard\_operm5 & 0 & 1000000 & 100 & 0.00000000 & FAILED \\
-diehard\_rank\_32x32 & 0 & 40000 & 100 & 0.00000000 & FAILED \\
-diehard\_rank\_6x8 & 0 & 100000 & 100 & 0.00000000 & FAILED \\
-diehard\_bitstream & 0 & 2097152 & 100 & 0.00000000 & FAILED \\
-diehard\_opso & 0 & 2097152 & 100 & 0.00000000 & FAILED \\
-diehard\_oqso & 0 & 2097152 & 100 & 0.00960763 & PASSED \\
-diehard\_dna & 0 & 2097152 & 100 & 0.00000000 & FAILED \\
-diehard\_count\_1s\_str & 0 & 256000 & 100 & 0.00000000 & FAILED \\
-diehard\_count\_1s\_byt & 0 & 256000 & 100 & 0.00000000 & FAILED \\
-diehard\_parking\_lot & 0 & 12000 & 100 & 0.00000000 & FAILED \\
-diehard\_2dsphere & 2 & 8000 & 100 & 0.00000000 & FAILED \\
-diehard\_3dsphere & 3 & 4000 & 100 & 0.00189864 & WEAK \\
-diehard\_3dsphere & 3 & 4000 & 200 & 0.00521439 & PASSED \\
-diehard\_squeeze & 0 & 100000 & 100 & 0.00000000 & FAILED \\
-diehard\_sums & 0 & 100 & 100 & 0.00000000 & FAILED \\
-diehard\_runs & 0 & 100000 & 100 & 0.00000000 & FAILED \\
-diehard\_runs & 0 & 100000 & 100 & 0.00000000 & FAILED \\
-diehard\_craps & 0 & 200000 & 100 & 0.00000000 & FAILED \\
-diehard\_craps & 0 & 200000 & 100 & 0.00000000 & FAILED \\
-marsaglia\_tsang\_gcd & 0 & 10000000 & 100 & 0.97533085 & PASSED \\
-marsaglia\_tsang\_gcd & 0 & 10000000 & 100 & 0.37129211 & PASSED \\
-sts\_monobit & 1 & 100000 & 100 & 0.00000163 & WEAK \\
-sts\_monobit & 1 & 100000 & 200 & 0.00000003 & FAILED \\
-sts\_runs & 2 & 100000 & 100 & 0.00014241 & WEAK \\
-sts\_runs & 2 & 100000 & 200 & 0.00000000 & FAILED \\
-sts\_serial & 1 & 100000 & 100 & 0.00000299 & WEAK \\
-sts\_serial & 2 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 3 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 3 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 4 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 4 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 5 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 5 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 6 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 6 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 7 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 7 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 8 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 8 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 9 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 9 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 10 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 10 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 11 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 11 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 12 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 12 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 13 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 13 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 14 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 14 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 15 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 15 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 16 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 16 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 17 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 17 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 18 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 18 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 19 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 19 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 20 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 20 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 21 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 21 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 22 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 22 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 23 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 23 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 24 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 24 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 25 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 25 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 26 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 26 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 27 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 27 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 28 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 28 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 29 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 29 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 30 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 30 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 31 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 31 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 32 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 32 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 33 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 33 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 34 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 34 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 35 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 35 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 36 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 36 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 37 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 37 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 38 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 38 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 39 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 39 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 40 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 40 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 41 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 41 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 42 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 42 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 43 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 43 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 44 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 44 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 45 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 45 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 46 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 46 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 47 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 47 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 48 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 48 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 49 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 49 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 50 & 100000 & 100 & 0.00000000 & FAILED \\
-sts\_serial & 50 & 100000 & 100 & 0.00000000 & FAILED \\
-\bottomrule
-\end{longtable}
-
-
+\subsection{Random keys Results}
 Table for random value
 \begin{longtable}{cccccc}
 \toprule
@@ -420,5 +266,30 @@ dab\_filltree2 & 0 & 5000000 & 1 & 0.48358687 & PASSED \\
 dab\_filltree2 & 1 & 5000000 & 1 & 0.66316672 & PASSED \\
 dab\_monobit2 & 12 & 65000000 & 1 & 0.85585632 & PASSED \\
 \bottomrule
+\caption{Dieharder Results of Random keys.}
+\label{table}
 \end{longtable}
 
+\section{Other Test Results}
+
+\subsubsection{Plot of Counts}
+\begin{figure}[h]
+\caption{Plot of Counts for TEKs}
+\centering
+\includegraphics[width=0.5\textwidth]{final0s1sboth.png}
+\end{figure}
+
+\begin{figure}[h]
+\caption{Plot of Counts for random keys}
+\centering
+\includegraphics[width=0.5\textwidth]{final0s1sboth.png}
+\end{figure}
+
+\subsection{Hilbert Curve}
+
+\subsection{Chi-squared Test}
+
+\subsection{Spectral Test}
+
+\subsection{Lag Plot}
+\section{Conclusions}
