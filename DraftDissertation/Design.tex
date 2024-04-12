@@ -48,21 +48,26 @@ Dieharder was selected as the test suite for this project as it is widely used a
 \item Sums Test (Broken): The test is noted in the documentation as unreliable and incorrect so this test will not be considered while testing the TEKs.
 \item Runs Test: This test counts the number of runs (increasing and decreasing) in the data. The covariance matrices for runs-up and runs-down are well-known, allowing for chi-square tests on quadratic forms involving the weak inverses of these covariance matrices ??. Runs are counted for sequences of length 10,000 and is done 10 times and then repeated.
 \item Craps Test: This test plays 200,000 games of 'craps' which is a dice game. The number of wins and the number of throws necessary to win are recorded. The number of wins is expected to be very close to a normal distribution with a mean of 200000p and a variance of 200000p(1-p), where p=244/495. The number of throws to end a game vary from 1 to infinity, but counts that are greater than 21 are grouped with 21. A chi-squared test is carried out on the number of throws. Each 32-bit integer from the data by normalising it to a an interval [0,1), then multiplying it by 6 and adding 1 to the integer part of the result. 
-\item Greatest Common Divisor Marsaglia and Tsang Test:
-\item Monobit Test (STS):
-\item Runs Test (STS):
-\item Serial Test (STS):
-\item Bit Distribution Test:
-\item Generalised Minimum Distance Test:
-\item Permutations Test:
-\item Lagged Sums Test:
-\item Kolmongorov-Smirnov Test Test:
-\item Byte Distribution Test:
-\item Discrete Cosine Transform (DCT) (Frequency Analysis) Test:
-\item Fill Tree Test:
-\item Fill Tree 2 Test:
-\item Monobit 2 Test:
+\item Greatest Common Divisor Marsaglia and Tsang Test: This test randomly chooses two 32-bit positive integers, u and v, from the data. Euclid's Method is applied to these values and two statistics are calculated: their greatest common divisor (w) and the number of steps (k) of Euclid's Method it took to find it. This results in two frequency tables, the number of appearances of each value for k and the number of occurrences of each GCD w. Chi-squared tests are done on each of these distributions and produces two p-values. 100 p-values are calculated and then a KS test is performed on them. 10power7 tsamples of u and v are generated. DEFINE TSAMPLE
+\item Monobit Test (STS): This test counts the 1 bits in the a long string of random integers chosen from the data. It compares this count to the expected number and returns a p-value.
+\item Runs Test (STS): This test counts the total number of 0 runs and the total number of 1 runs across a sample of bits selected from the data. If the data is random, then these counts should be uniformly distributed.
+\item Serial Test (STS): This test calculates the frequencies of overlapping n-tuples of bits throughout the data. The probabilities of the 2powern nbit overlapping patterns is expected to be equal.
+\item Bit Distribution Test: This test calculates the frequencies of all non-overlapping n-tuples of bits in the data and compares this to a binomial distributions using chi-squared test.
+\item Generalised Minimum Distance Test: This test generalises the 2d circle and 3d sphere minimum distance tests and calculates the minimum distance between pairs of points in n dimensions, where n=2,3,4,5. It examines their distribution and compares it to the expected distribution.
+\item Permutations Test: This test counts the order permutations of n random numbers selected from the data. There are n! permutations, of which are expected to be equally likely. The n samples are independent and a chi-squared test on the counts with n! - 1 degrees of freedom is carried out. 
+\item Lagged Sums Test: In this test pairs of values are selected from the data with a specific lag (distance) between them and these pairs are summed. The values are converted into p-values and a KS test is applied.
+\item Kolmongorov-Smirnov Test Test: This test generates a vector of uniform deviates from the data and then applies a KS test to it. The test is run multiple times and a final p-value is calculated.
+\item Byte Distribution Test: This test extracts n independent bytes from each of k consecutive words, incrementing indexed counters in all of the n tables resulting in a total of 256*n counters. A chi-squared fitting test is used to calculate the p-value. 
+\item Discrete Cosine Transform (DCT) (Frequency Analysis) Test: This test performs a DCT on independent blocks of n-tuple words from the data. The absolute value of each transform is checked for uniformity and independence using a chi-squared test.
+\item Fill Tree Test: This test inserts words from the data into small binary trees. If a word is unable to be inserted into the tree, the current count of words in the tree and the would-be position of the word is recorded. The test produces two p-values from a chi-squared test against the expected values and a chi-squared test for uniformity of where the insertions are failing.  
+\item Fill Tree 2 Test: This test is the same as the Fill Tree test above but uses bits instead of words. 
+\item Monobit 2 Test: This test performs the Monobit Test described above on blocks of a specified length from the data. 
 \end{itemize}
+
+\subsubsection{P-values}
+
+Dieharder how does it do p-values
+
 \subsection{Other Tests}
 
 Other tests to supplement the Dieharder test suite were implemented, these include: chi-squared test, spectral test, lag plot and plot of counts.\newline
@@ -91,6 +96,8 @@ By visualizing data using the Hilbert curve, one can quickly discern patterns or
 
 \subsection{Random Dataset}
 
-A dataset containing random numbers was sourced from CITE Random.org. This website generates true random numbers from atmospheric noise. These numbers are better than pseudo random numbers as they do not require a seed and are truly random. This service was created in 1998 by Dr Mads Haahr in Trinity College Dublin and is now run by Randomness and Integrity Services Ltd. \newline
+A dataset containing random numbers was sourced from Random.org~(\cite{Haahr1998}. This website generates true random numbers from atmospheric noise. These numbers are better than pseudo random numbers as they do not require a seed and are truly random. This service was created in 1998 by Dr Mads Haahr in Trinity College Dublin and is now run by Randomness and Integrity Services Ltd. \newline
 
-The same randomness testing is applied to this random dataset as the TEKs. This allows for a baseline to compare the results to as well as validating the tests.  The dataset contains 129 million 128-bit numbers, equal to the set of TEKs.
+Previous testing has been done to ensure the randomness of random.orgs numbers, including previous dissertations in 2005 CITE and 2001. Dieharder was also used to validate the numbers being generated. \newline
+
+The same randomness testing is applied to this random dataset as the TEKs. This allows for a baseline to compare the results to as well as validating the tests.  The dataset contains 169 million 128-bit numbers, very similar to the set of TEKs.
