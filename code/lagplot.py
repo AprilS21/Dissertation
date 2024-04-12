@@ -1,46 +1,31 @@
 import sys
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
+import numpy as np
 
-def main(path):
-    """
-    Creates lag plot for set of keys
+def read_hex_keys(filename):
+    with open(filename, 'r') as file:
+        keys = file.readlines()
+    return [int(key.strip(), 16) for key in keys]
 
-    Parameters:
-    path to file containing keys, binary format
+def calculate_differences(keys):
+    return [keys[i] - keys[i-1] for i in range(1, len(keys))]
 
-    Returns:
-    saves figure as lagplot.png
-    """
-    lag = 1
-    with open(path, 'r') as file:
-        # Initialize variables to store current and previous values
-        prev_value = None
-        prev_index = None
-        
-        # Iterate over each line in the file
-        for line_count, line in enumerate(file, start=1):
-            line = line.strip()
-            if not line:
-                continue
-            value = int(line)
-            
-            # Plot lag plot
-            if prev_value is not None:
-                plt.scatter(prev_value, value, color='blue', marker='o', alpha=0.5)
-            prev_value = value
-
-    # Add labels and title
-    plt.xlabel(f'x(t)')
-    plt.ylabel(f'x(t + {lag})')
-    plt.title(f'Lag Plot (lag={lag})')
-
-    # Save the plot
+def plot_lagplot(differences):
+    plt.figure(figsize=(12, 12))
+    plt.scatter(differences[:-1], differences[1:], alpha=0.5)
+    plt.xlabel('Difference i')
+    plt.ylabel('Difference i+1')
+    plt.title('Lagplot')
+    plt.grid(True)
+    #plt.show()
     plt.savefig('./lagplot.png')
     plt.close()
 
+def main():
+    filename = sys.argv[1] 
+    keys = read_hex_keys(filename)
+    differences = calculate_differences(keys)
+    plot_lagplot(differences)
+
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python lagplot.py input_file_path")
-        sys.exit(1)
-    path = sys.argv[1]
-    main(path)
+    main()

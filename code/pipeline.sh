@@ -17,10 +17,9 @@ runBool=$4
 
 #python3 countBits.py "$input_file"
 
-python3 hilbertCurve.py "$input_file"
+#python3 hilbertCurve.py "$input_file"
 
-tmp_file="/tmp/chosenBitsk75cyqsl.tekBits"
-#$(python3 extractBits.py "$startBits" "$endBits" "$runBool" "$input_file")
+tmp_file=$(python3 extractBits.py "$startBits" "$endBits" "$runBool" "$input_file")
 
 echo "temp file is $tmp_file"
 
@@ -28,9 +27,9 @@ echo "temp file is $tmp_file"
 
 #python3 chisquared.py "$tmp_file"
 
-#python3 spectralTest.py "$tmp_file"
+python3 spectralTest.py "$tmp_file"
 
 #python3 autocorrelation.py "$tmp_file"
 
-python3 lagplot.py "$tmp_file"
+#python3 lagplot.py "$input_file"
  

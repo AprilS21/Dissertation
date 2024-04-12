@@ -6,48 +6,51 @@ import numpy as np
 def hex_to_int(hex_key):
     return int(hex_key, 16)
 
-def plot_hilbert_curve(coordinates):
+def plot_hilbert_curve(hex_keys):
     """
-    Plot Hilbert Curve of a set of coordinates
+    Plot Hilbert Curve of a set of keys
 
     Parameters:
-    coordinates (generator) : generator yielding coordinates as (x, y) tuples
+    hex_keys (list[str]) : list of hexadecimal keys
+
+    Returns:
+    Saves plot as hilbertCurve.png
     """
-    plt.figure(figsize=(8, 8))
-    plt.title("Hilbert Curve")
-    x, y = zip(*coordinates)
-    plt.plot(x, y, color='blue', marker='o')
-    plt.gca().invert_yaxis()  # Invert y-axis
-    plt.savefig('./hilbertCurve.png')
+    int_values = list(map(hex_to_int, hex_keys))
+    side_length = int(np.ceil(np.sqrt(len(int_values))))
 
-def generate_coordinates(file_path):
-    with open(file_path, 'r') as file:
-        for line_count, line in enumerate(file, start=1):
-            line = line.strip()
-            if len(line) != 32:
-                print(f"Skipping bad length line at line {line_count}: {line}", file=sys.stderr)
-                continue
-            int_value = hex_to_int(line)
-            yield int_value
-
-def main(path):
-    line_count = 0
-    with open(path, 'r') as file:
-        for _ in file:
-            line_count += 1
-
-    print("Total number of keys:", line_count)
-
-    side_length = int(np.ceil(np.sqrt(line_count)))
+    # Create curve
     p = int(np.ceil(np.log2(side_length)))
     hilbert_curve = HilbertCurve(p, 2)
 
-    coordinates = (hilbert_curve.point_from_distance(i) for i in generate_coordinates(path))
-    plot_hilbert_curve(coordinates)
+    # get coordinates
+    coordinates = [hilbert_curve.point_from_distance(x) for x in range(len(int_values))]
+
+    plt.figure(figsize=(12, 12))
+    plt.title("Hilbert Curve")
+    plt.plot(*zip(*coordinates), color='blue', marker='o')
+    plt.gca().invert_yaxis()  # Invert y-axis
+    plt.savefig('./hilbertCurve.png')
+
+def main(path):
+    hex_keys = []
+    line_count =0
+    with open(path, 'r') as file:
+        for line in file:
+            if (len(line) != 33):
+                line_count += 1
+                print("Skipping bad length line at",line_count,"line:",line,file=sys.stderr)
+                print("length",len(line),file=sys.stderr)
+                continue
+            try:
+                hex_keys.append(line)
+                line_count += 1
+            except Exception as e:
+                print("Exception",e,"at",line_count,file=sys.stderr)
+                print("Line:",line,file=sys.stderr)
+        
+    plot_hilbert_curve(hex_keys)
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python hilbertCurve.py input_file_path")
-        sys.exit(1)
-    path = sys.argv[1]
+    path = str(sys.argv[1])
     main(path)
